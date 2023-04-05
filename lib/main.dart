@@ -1,3 +1,4 @@
+import 'package:fitcel/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -5,16 +6,16 @@ void main() {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  const MainApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
+    return MaterialApp(
+        title: 'FitCel App',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            primarySwatch: Colors.cyan,
+            visualDensity: VisualDensity.adaptivePlatformDensity),
+        home: HomePage());
   }
 }
