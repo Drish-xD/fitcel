@@ -16,7 +16,6 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             scaffoldBackgroundColor: bgColor,
-            primaryColor: prColor,
             textTheme: Theme.of(context).textTheme.apply(bodyColor: txtColor),
             fontFamily: "Montserrat",
             visualDensity: VisualDensity.adaptivePlatformDensity),
