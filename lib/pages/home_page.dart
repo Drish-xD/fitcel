@@ -1,3 +1,5 @@
+import 'package:fitcel/constants.dart';
+import 'package:fitcel/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -6,19 +8,32 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: myAppBar(),
-      body: const Center(
-        child: Text("Hello World!"),
-      ),
-    );
-  }
-
-  AppBar myAppBar() {
-    return AppBar(
-      elevation: 0,
-      leading: IconButton(
-        icon: const Icon(Icons.home_filled),
-        onPressed: () {},
+      body: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.all(20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TitleText(text: "Hi Name"),
+                IconButton(
+                  icon: const Icon(Icons.search_rounded),
+                  color: txtColor,
+                  iconSize: 35,
+                  onPressed: () {},
+                )
+              ],
+            ),
+          ),
+          const SizedBox(height: 40),
+          Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                  color: prColor.withOpacity(0.5),
+                  borderRadius: BorderRadius.circular(12)),
+              child: Text("ndcncjnd ")),
+        ],
       ),
     );
   }

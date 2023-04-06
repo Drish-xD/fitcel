@@ -1,5 +1,5 @@
 import 'package:fitcel/constants.dart';
-import 'package:fitcel/pages/home_page.dart';
+import 'package:fitcel/pages/main_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,6 +20,6 @@ class MainApp extends StatelessWidget {
             textTheme: Theme.of(context).textTheme.apply(bodyColor: txtColor),
             fontFamily: "Montserrat",
             visualDensity: VisualDensity.adaptivePlatformDensity),
-        home: HomePage());
+        home: const SafeArea(child: MainPage()));
   }
 }
