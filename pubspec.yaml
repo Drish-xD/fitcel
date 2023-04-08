@@ -23,3 +23,5 @@ flutter:
       - asset: assets/fonts/Montserrat[wght].ttf
       - asset: assets/fonts/Montserrat-Italic[wght].ttf
         style: italic
+  assets:
+    - assets/images/
