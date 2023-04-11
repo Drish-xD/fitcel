@@ -5,7 +5,19 @@ import 'package:fitcel/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
+
+  final List items = [
+    {"name": "Deepika", 'fav': true, 'dType': "Intense", 'wType': "Intense"},
+    {"name": "Priyanka", 'fav': false, 'dType': "Intense", 'wType': "Intense"},
+    {
+      "name": "Hritik Roshan",
+      'fav': true,
+      'dType': "Intense",
+      'wType': "Intense"
+    },
+    {"name": "Jonny", 'fav': true, 'dType': "Extreme", 'wType': "Extreme"}
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -35,16 +47,16 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 30),
 
           // Top Workouts plans slider
-          const CardSlider(
+          CardSlider(
             secHeader: 'Top Workout Plans',
-            plansList: [],
+            plansList: items,
           ),
           const SizedBox(height: 30),
 
           // Top Diet plans slider
-          const CardSlider(
+          CardSlider(
             secHeader: "Top Diet Plans",
-            plansList: [],
+            plansList: items,
           ),
           const SizedBox(height: 100),
         ],

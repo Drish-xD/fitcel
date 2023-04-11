@@ -21,7 +21,7 @@ class OverviewBox extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
                   color: prColor.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(12)),
               child: const Text("ndcncjnd ")),
         ],
       ),

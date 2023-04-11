@@ -1,6 +1,5 @@
 import 'package:fitcel/constants.dart';
 import 'package:fitcel/pages/main_page.dart';
-// import 'package:fitcel/pages/log_in_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,11 +15,12 @@ class MainApp extends StatelessWidget {
         title: 'FitCel App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+            useMaterial3: true,
             scaffoldBackgroundColor: bgColor,
+            splashColor: Colors.deepPurple[900]?.withOpacity(0.1),
             textTheme: Theme.of(context).textTheme.apply(bodyColor: txtColor),
             fontFamily: "Montserrat",
             visualDensity: VisualDensity.adaptivePlatformDensity),
         home: const SafeArea(child: MainPage()));
-    // home: const SafeArea(child: LogInPage()));
   }
 }

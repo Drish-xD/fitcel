@@ -48,7 +48,7 @@ class StartPage extends StatelessWidget {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                         shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
                         ),
                         backgroundColor: Colors.white,
                         foregroundColor: Colors.black,

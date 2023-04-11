@@ -108,7 +108,7 @@ class SignUpPage extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                             shape: const RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
+                                  BorderRadius.all(Radius.circular(12)),
                             ),
                             backgroundColor: mainButtonColor,
                             foregroundColor: Colors.black,

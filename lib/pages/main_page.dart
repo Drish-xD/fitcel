@@ -17,11 +17,11 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
+  static final List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     PlansPage(),
-    StatsPage(),
-    UserPage()
+    const StatsPage(),
+    const UserPage()
   ];
 
   void _onTap(int index) {
@@ -52,7 +52,7 @@ class _MainPageState extends State<MainPage> {
             ],
             type: BottomNavigationBarType.fixed,
             backgroundColor: prColor.withOpacity(0.2),
-            selectedItemColor: Colors.blueAccent,
+            selectedItemColor: Colors.indigo[700],
             unselectedItemColor: Colors.white70,
             showSelectedLabels: false,
             showUnselectedLabels: false,
