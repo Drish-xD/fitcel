@@ -11,7 +11,7 @@ class StartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: Padding(
         padding: const EdgeInsets.all(myPadding),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -50,7 +50,7 @@ class StartPage extends StatelessWidget {
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                        backgroundColor: mainButtonColor,
+                        backgroundColor: Colors.white,
                         foregroundColor: Colors.black,
                         padding: const EdgeInsets.all(10)),
                     child: Row(

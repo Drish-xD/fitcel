@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:fitcel/constants.dart';
-import 'package:fitcel/pages/home_page.dart';
-import 'package:fitcel/pages/search_page.dart';
-import 'package:fitcel/pages/stats_page.dart';
-import 'package:fitcel/pages/user_page.dart';
+import 'package:fitcel/pages/navigation/home_page.dart';
+import 'package:fitcel/pages/navigation/plans_page.dart';
+import 'package:fitcel/pages/navigation/stats_page.dart';
+import 'package:fitcel/pages/navigation/user_page.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -19,7 +19,7 @@ class _MainPageState extends State<MainPage> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    SearchPage(),
+    PlansPage(),
     StatsPage(),
     UserPage()
   ];

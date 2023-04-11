@@ -1,5 +1,6 @@
 import 'package:fitcel/constants.dart';
 import 'package:fitcel/pages/main_page.dart';
+// import 'package:fitcel/pages/log_in_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,5 +21,6 @@ class MainApp extends StatelessWidget {
             fontFamily: "Montserrat",
             visualDensity: VisualDensity.adaptivePlatformDensity),
         home: const SafeArea(child: MainPage()));
+    // home: const SafeArea(child: LogInPage()));
   }
 }
