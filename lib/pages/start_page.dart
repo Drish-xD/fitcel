@@ -1,4 +1,5 @@
 import 'package:fitcel/constants.dart';
+import 'package:fitcel/pages/log_in_page.dart';
 import 'package:flutter/material.dart';
 
 const String titleText = "Get Red Carpet Ready with Fitcel";
@@ -20,19 +21,21 @@ class StartPage extends StatelessWidget {
               top: 40,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     titleText,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 46,
-                        fontWeight: FontWeight.bold),
+                        wordSpacing: 1,
+                        fontWeight: FontWeight.w900),
                   ),
                   Text(
                     descText,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.white.withOpacity(0.85),
                       fontSize: 16,
+                      letterSpacing: 1,
                     ),
                   ),
                 ],
@@ -45,22 +48,29 @@ class StartPage extends StatelessWidget {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LogInPage()),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(12)),
                         ),
                         backgroundColor: Colors.white,
                         foregroundColor: Colors.black,
-                        padding: const EdgeInsets.all(10)),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 10)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         Text("Let's Start",
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 20,
                             )),
-                        Icon(Icons.arrow_right_alt),
+                        Icon(Icons.east_rounded, size: 25),
                       ],
                     ),
                   ),

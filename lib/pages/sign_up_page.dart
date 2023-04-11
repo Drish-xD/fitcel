@@ -1,4 +1,5 @@
 import 'package:fitcel/constants.dart';
+import 'package:fitcel/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -6,47 +7,51 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(myPadding),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(myPadding),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  OutlinedButton(
-                    onPressed: () {},
-                    child: const Icon(
-                      Icons.arrow_circle_left_outlined,
-                      color: Colors.white,
-                      size: 40,
+                  Center(
+                    child: Ink(
+                      decoration: ShapeDecoration(
+                        color: prColor.withOpacity(0.6),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12))),
+                      ),
+                      child: IconButton(
+                        icon: const Icon(Icons.arrow_back_ios_rounded),
+                        iconSize: 25,
+                        color: Colors.white,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
                     ),
                   ),
-                  const Text(
-                    "Sign Up",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 46,
-                        fontWeight: FontWeight.bold),
-                  ),
+                  const SizedBox(width: 10),
+                  TitleText(
+                    text: "Sign Up",
+                    size: 35,
+                  )
                 ],
               ),
-              const SizedBox(height: 20),
               const Text(
                 "Sign Up with one of the following options.",
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.white,
+                  fontStyle: FontStyle.italic,
                 ),
               ),
-            ]),
-            const SizedBox(height: 20),
-            Form(
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
+              const SizedBox(height: 40),
+              Form(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -54,7 +59,7 @@ class SignUpPage extends StatelessWidget {
                       decoration: const InputDecoration(
                         labelText: "Username",
                         hintText: "Username",
-                        border: OutlineInputBorder(),
+                        border: UnderlineInputBorder(),
                         labelStyle: TextStyle(
                           color: Colors.black,
                         ),
@@ -70,7 +75,7 @@ class SignUpPage extends StatelessWidget {
                       decoration: const InputDecoration(
                         labelText: "E-Mail",
                         hintText: "E-Mail",
-                        border: OutlineInputBorder(),
+                        border: UnderlineInputBorder(),
                         labelStyle: TextStyle(
                           color: Colors.black,
                         ),
@@ -86,7 +91,7 @@ class SignUpPage extends StatelessWidget {
                       decoration: const InputDecoration(
                           labelText: "Password",
                           hintText: "Password",
-                          border: OutlineInputBorder(),
+                          border: UnderlineInputBorder(),
                           labelStyle: TextStyle(
                             color: Colors.black,
                           ),
@@ -100,7 +105,7 @@ class SignUpPage extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 30),
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
@@ -112,11 +117,11 @@ class SignUpPage extends StatelessWidget {
                             ),
                             backgroundColor: mainButtonColor,
                             foregroundColor: Colors.black,
-                            padding: const EdgeInsets.all(10)),
+                            padding: const EdgeInsets.all(15)),
                         child: const Text(
                           "Create Account",
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 20,
                           ),
                         ),
                       ),
@@ -124,18 +129,25 @@ class SignUpPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Already have an account?"),
+                        const Text("Already have an account?",
+                            style: TextStyle(fontSize: 14)),
                         TextButton(
-                          onPressed: () {},
-                          child: const Text("Log in"),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            "Log in",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800),
+                          ),
                         )
                       ],
                     )
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

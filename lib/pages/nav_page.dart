@@ -7,14 +7,14 @@ import 'package:fitcel/pages/navigation/stats_page.dart';
 import 'package:fitcel/pages/navigation/user_page.dart';
 import 'package:flutter/material.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+class NavPage extends StatefulWidget {
+  const NavPage({Key? key}) : super(key: key);
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<NavPage> createState() => _NavPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _NavPageState extends State<NavPage> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[

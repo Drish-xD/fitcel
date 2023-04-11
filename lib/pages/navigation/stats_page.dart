@@ -5,10 +5,8 @@ class StatsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Stats Page"),
-      ),
+    return const Center(
+      child: Text("Stats Page"),
     );
   }
 }
