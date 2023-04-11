@@ -1,5 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:fitcel/constants.dart';
+import 'package:flutter/material.dart';
+
+const String titleText = "Get Red Carpet Ready with Fitcel";
+const String descText =
+    "Get fit like a celebrity with our app! Access the fitness and diet plans of your favorite stars and achieve your health goals. Choose from a variety of plans, save your favorites, and track your progress.";
 
 class StartPage extends StatelessWidget {
   const StartPage({Key? key}) : super(key: key);
@@ -18,14 +22,14 @@ class StartPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
                   Text(
-                    start_first,
+                    titleText,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 46,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    start_second,
+                    descText,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -35,7 +39,7 @@ class StartPage extends StatelessWidget {
               ),
             ),
             const Positioned(
-              child: Image(image: AssetImage(img)),
+              child: Image(image: AssetImage("assets/images/start_img.png")),
             ),
             Row(
               children: [
@@ -46,7 +50,7 @@ class StartPage extends StatelessWidget {
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                        backgroundColor: start_button_color,
+                        backgroundColor: mainButtonColor,
                         foregroundColor: Colors.black,
                         padding: const EdgeInsets.all(10)),
                     child: Row(

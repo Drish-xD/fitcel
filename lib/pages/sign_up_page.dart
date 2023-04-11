@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:fitcel/constants.dart';
+import 'package:flutter/material.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -110,7 +110,7 @@ class SignUpPage extends StatelessWidget {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
                             ),
-                            backgroundColor: start_button_color,
+                            backgroundColor: mainButtonColor,
                             foregroundColor: Colors.black,
                             padding: const EdgeInsets.all(10)),
                         child: const Text(

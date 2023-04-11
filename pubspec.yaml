@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -17,11 +18,12 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+      - assets/images/
+
   fonts:
     - family: Montserrat
       fonts:
       - asset: assets/fonts/Montserrat[wght].ttf
       - asset: assets/fonts/Montserrat-Italic[wght].ttf
         style: italic
-  assets:
-    - assets/images/

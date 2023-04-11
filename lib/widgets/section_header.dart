@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SectionHeader extends StatelessWidget {
-  const SectionHeader({Key? key}) : super(key: key);
+  double size;
+  final String text;
+  final Color color;
+  SectionHeader(
+      {Key? key,
+      this.size = 20,
+      required this.text,
+      this.color = Colors.white70})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Text(
+      text,
+      style: TextStyle(
+        color: color,
+        fontSize: size,
+        fontWeight: FontWeight.w500,
+      ),
+    );
   }
 }

@@ -1,4 +1,6 @@
 import 'package:fitcel/constants.dart';
+import 'package:fitcel/widgets/home/card_slider.dart';
+import 'package:fitcel/widgets/home/overview_box.dart';
 import 'package:fitcel/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 
@@ -8,32 +10,32 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.all(20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TitleText(text: "Hi Name"),
-                IconButton(
-                  icon: const Icon(Icons.search_rounded),
-                  color: txtColor,
-                  iconSize: 35,
-                  onPressed: () {},
-                )
-              ],
+      body: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TitleText(text: "Hi Name"),
+                  IconButton(
+                    icon: const Icon(Icons.search_rounded),
+                    color: txtColor,
+                    iconSize: 35,
+                    onPressed: () {},
+                  )
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 40),
-          Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                  color: prColor.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(12)),
-              child: Text("ndcncjnd ")),
-        ],
+            const OverviewBox(),
+            const SizedBox(height: 30),
+            const CardSlider(),
+            const SizedBox(height: 30),
+            const CardSlider(),
+          ],
+        ),
       ),
     );
   }
