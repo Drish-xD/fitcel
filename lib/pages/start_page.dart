@@ -1,16 +1,17 @@
 import 'package:fitcel/constants.dart';
 import 'package:fitcel/pages/log_in_page.dart';
 import 'package:flutter/material.dart';
-
-const String titleText = "Get Red Carpet Ready with Fitcel";
-const String descText =
-    "Get fit like a celebrity with our app! Access the fitness and diet plans of your favorite stars and achieve your health goals. Choose from a variety of plans, save your favorites, and track your progress.";
+import 'package:page_transition/page_transition.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const String titleText = "Get Red Carpet Ready with Fitcel";
+    const String descText =
+        "Get fit like a celebrity with our app! Access the fitness and diet plans of your favorite stars and achieve your health goals. Choose from a variety of plans, save your favorites, and track your progress.";
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(myPadding),
@@ -51,8 +52,12 @@ class StartPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => const LogInPage()),
+                        PageTransition(
+                            opaque: true,
+                            duration: const Duration(milliseconds: 500),
+                            isIos: true,
+                            type: PageTransitionType.rightToLeftWithFade,
+                            child: const LogInPage()),
                       );
                     },
                     style: ElevatedButton.styleFrom(

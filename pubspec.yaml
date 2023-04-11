@@ -9,8 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  carousel_slider: ^4.2.1
   card_swiper : ^2.0.4
+  page_transition: "^2.0.9"
+
 
 dev_dependencies:
   flutter_test:

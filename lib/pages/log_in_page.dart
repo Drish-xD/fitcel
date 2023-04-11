@@ -2,6 +2,7 @@ import 'package:fitcel/constants.dart';
 import 'package:fitcel/pages/sign_up_page.dart';
 import 'package:fitcel/widgets/title_text.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 class LogInPage extends StatelessWidget {
   const LogInPage({Key? key}) : super(key: key);
@@ -125,8 +126,12 @@ class LogInPage extends StatelessWidget {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SignUpPage()),
+                              PageTransition(
+                                  opaque: true,
+                                  duration: const Duration(milliseconds: 500),
+                                  isIos: true,
+                                  type: PageTransitionType.rightToLeftWithFade,
+                                  child: const SignUpPage()),
                             );
                           },
                           child: const Text(
