@@ -18,33 +18,28 @@ class StartPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Positioned(
-              top: 40,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    titleText,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 46,
-                        wordSpacing: 1,
-                        fontWeight: FontWeight.w900),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  titleText,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 46,
+                      wordSpacing: 1,
+                      fontWeight: FontWeight.w900),
+                ),
+                Text(
+                  descText,
+                  style: TextStyle(
+                    color: Colors.white.withOpacity(0.85),
+                    fontSize: 16,
+                    letterSpacing: 1,
                   ),
-                  Text(
-                    descText,
-                    style: TextStyle(
-                      color: Colors.white.withOpacity(0.85),
-                      fontSize: 16,
-                      letterSpacing: 1,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-            const Positioned(
-              child: Image(image: AssetImage("assets/images/start_img.png")),
-            ),
+            const Image(image: AssetImage("assets/images/start_img.png")),
             Row(
               children: [
                 Expanded(
