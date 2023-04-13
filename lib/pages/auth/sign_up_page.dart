@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitcel/auth_service.dart';
 import 'package:fitcel/constants.dart';
 import 'package:fitcel/widgets/google_btn.dart';
 import 'package:fitcel/widgets/my_button.dart';
@@ -162,9 +163,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(height: 50),
 
                 // SignUp with google or apple
-                const GoogleBtn(
+                GoogleBtn(
                   imgPath: "assets/images/google-logo.png",
                   txt: "Signup",
+                  onTap: () => AuthService().signInWithGoogle(),
                 ),
                 const SizedBox(height: 50),
 
