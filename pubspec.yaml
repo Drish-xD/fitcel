@@ -1,5 +1,5 @@
 name: fitcel
-description: A new Flutter project.
+description: A fitness app with workout and diet plans of Celebrities.
 publish_to: "none"
 version: 0.1.0
 
@@ -10,8 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   card_swiper : ^2.0.4
-  page_transition: "^2.0.9"
-
+  firebase_core : ^2.9.0
+  page_transition: ^2.0.9
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:fitcel/widgets/home/section_header.dart';
 import 'package:fitcel/widgets/plan_card.dart';
-import 'package:fitcel/widgets/section_header.dart';
 import 'package:flutter/material.dart';
 
 class CardSlider extends StatelessWidget {

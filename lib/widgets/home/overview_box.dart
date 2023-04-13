@@ -1,5 +1,5 @@
 import 'package:fitcel/constants.dart';
-import 'package:fitcel/widgets/section_header.dart';
+import 'package:fitcel/widgets/home/section_header.dart';
 import 'package:flutter/material.dart';
 
 class OverviewBox extends StatelessWidget {

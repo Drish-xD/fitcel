@@ -14,13 +14,15 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
         title: 'FitCel App',
         debugShowCheckedModeBanner: false,
+        // Set Theme For The App
         theme: ThemeData(
             useMaterial3: true,
             scaffoldBackgroundColor: bgColor,
-            splashColor: Colors.deepPurple[900]?.withOpacity(0.1),
+            // splashColor: Colors.deepPurple[900]?.withOpacity(0.1),
             textTheme: Theme.of(context).textTheme.apply(bodyColor: txtColor),
             fontFamily: "Montserrat",
             visualDensity: VisualDensity.adaptivePlatformDensity),
-        home: const SafeArea(child: StartPage()));
+        // Main Start Point Of App
+        home: const StartPage());
   }
 }
