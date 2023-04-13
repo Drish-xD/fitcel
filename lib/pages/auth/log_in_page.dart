@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitcel/constants.dart';
 import 'package:fitcel/pages/auth/forgot_pass_page.dart';
 import 'package:fitcel/pages/auth/sign_up_page.dart';
@@ -8,14 +9,64 @@ import 'package:fitcel/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
-class LogInPage extends StatelessWidget {
-  LogInPage({Key? key}) : super(key: key);
+class LogInPage extends StatefulWidget {
+  const LogInPage({Key? key}) : super(key: key);
 
+  @override
+  State<LogInPage> createState() => _LogInPageState();
+}
+
+class _LogInPageState extends State<LogInPage> {
+  // textField controllers
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   // LogIn Method
-  void logInUser() {}
+  void logInUser() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      if (context.mounted) Navigator.pop(context);
+      print("logged IN");
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      if (e.code == 'user-not-found') {
+        showErrorMessage('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        showErrorMessage('Wrong password provided for that user.');
+      }
+    }
+  }
+
+// show Error Message
+  void showErrorMessage(String msg) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          alignment: Alignment.topCenter,
+          backgroundColor: Colors.redAccent.withOpacity(0.6),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          content: Text(
+            msg,
+            textAlign: TextAlign.center,
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

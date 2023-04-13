@@ -78,7 +78,7 @@ class StartPage extends StatelessWidget {
                   duration: const Duration(milliseconds: 500),
                   isIos: true,
                   type: PageTransitionType.rightToLeftWithFade,
-                  child: LogInPage(),
+                  child: const LogInPage(),
                 ),
               );
             },

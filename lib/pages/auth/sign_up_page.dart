@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitcel/constants.dart';
 import 'package:fitcel/widgets/google_btn.dart';
 import 'package:fitcel/widgets/my_button.dart';
@@ -5,13 +6,74 @@ import 'package:fitcel/widgets/my_textfield.dart';
 import 'package:fitcel/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 
-class SignUpPage extends StatelessWidget {
-  SignUpPage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  // textField controllers
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   // SignUp Method
-  void signUpUser() {}
+  void signUpUser() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+    try {
+      if (passwordController.text == confirmPasswordController.text) {
+        final credential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+        if (context.mounted) Navigator.pop(context);
+        print(credential);
+      } else {
+        print("error pass not match");
+
+        if (context.mounted) Navigator.pop(context);
+        showErrorMessage('Passwords don\'t match');
+      }
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      if (e.code == 'weak-password') {
+        showErrorMessage('Td is too weahe password providek.');
+      } else if (e.code == 'email-already-in-use') {
+        showErrorMessage('The account already exists for that email.');
+      }
+    } catch (e) {
+      showErrorMessage(e.toString());
+    }
+  }
+
+// show Error Message
+  void showErrorMessage(String msg) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          alignment: Alignment.topCenter,
+          backgroundColor: Colors.redAccent.withOpacity(0.6),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          content: Text(
+            msg,
+            textAlign: TextAlign.center,
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +116,7 @@ class SignUpPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 15),
                       MyTextfield(
-                        controller: passwordController,
+                        controller: confirmPasswordController,
                         hintText: "Confirm Password",
                         obscureText: true,
                       ),
