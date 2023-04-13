@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:154232467344:android:64f49a18fad6d89ba4cd15",
+        "mobilesdk_app_id": "1:154232467344:android:21ba6f73d213ed72a4cd15",
         "android_client_info": {
           "package_name": "com.example.fitcel"
         }
@@ -29,6 +29,13 @@
             {
               "client_id": "154232467344-5t6vldrld8p920qa3oi5531va43hsngj.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "154232467344-87irp8gc0gbmuvcr3ibc5ap1a7493ih6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fitcel"
+              }
             }
           ]
         }

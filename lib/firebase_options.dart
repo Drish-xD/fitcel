@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAKztALoPb6C5lxvgDOOFm3xzSZWNNoSWA',
-    appId: '1:154232467344:android:64f49a18fad6d89ba4cd15',
+    appId: '1:154232467344:android:21ba6f73d213ed72a4cd15',
     messagingSenderId: '154232467344',
     projectId: 'fitcel-e2f0e',
     storageBucket: 'fitcel-e2f0e.appspot.com',
@@ -59,7 +59,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAMa7L9GzUI3H61l6N2FGi3wDhmI8RGXgw',
-    appId: '1:154232467344:ios:aaf42a9cf59e0408a4cd15',
+    appId: '1:154232467344:ios:14d79828e8582015a4cd15',
     messagingSenderId: '154232467344',
     projectId: 'fitcel-e2f0e',
     storageBucket: 'fitcel-e2f0e.appspot.com',
