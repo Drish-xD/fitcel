@@ -37,7 +37,6 @@ class _LogInPageState extends State<LogInPage> {
         email: emailController.text,
         password: passwordController.text,
       );
-      if (context.mounted) Navigator.pop(context);
       print("logged IN");
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
@@ -195,7 +194,7 @@ class _LogInPageState extends State<LogInPage> {
                             duration: const Duration(milliseconds: 500),
                             isIos: true,
                             type: PageTransitionType.rightToLeft,
-                            child: SignUpPage(),
+                            child: const SignUpPage(),
                           ),
                         );
                       },

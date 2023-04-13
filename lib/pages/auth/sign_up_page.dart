@@ -36,7 +36,6 @@ class _SignUpPageState extends State<SignUpPage> {
           email: emailController.text,
           password: passwordController.text,
         );
-        if (context.mounted) Navigator.pop(context);
         print(credential);
       } else {
         print("error pass not match");
