@@ -26,10 +26,11 @@ class StartPage extends StatelessWidget {
                   const Text(
                     titleText,
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 46,
-                        wordSpacing: 1,
-                        fontWeight: FontWeight.w900),
+                      color: Colors.white,
+                      fontSize: 46,
+                      wordSpacing: 1,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Text(
@@ -73,29 +74,39 @@ class StartPage extends StatelessWidget {
               Navigator.push(
                 context,
                 PageTransition(
-                    opaque: true,
-                    duration: const Duration(milliseconds: 500),
-                    isIos: true,
-                    type: PageTransitionType.rightToLeftWithFade,
-                    child: LogInPage()),
+                  opaque: true,
+                  duration: const Duration(milliseconds: 500),
+                  isIos: true,
+                  type: PageTransitionType.rightToLeftWithFade,
+                  child: LogInPage(),
+                ),
               );
             },
             style: ElevatedButton.styleFrom(
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                ),
-                backgroundColor: Colors.white,
-                foregroundColor: Colors.black,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
-                Text("Let's Start",
-                    style: TextStyle(
-                      fontSize: 20,
-                    )),
-                Icon(Icons.east_rounded, size: 25),
+                Text(
+                  "Let's Start",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Icon(
+                  Icons.east_rounded,
+                  size: 25,
+                ),
               ],
             ),
           ),

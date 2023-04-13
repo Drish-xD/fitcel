@@ -1,8 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:fitcel/constants.dart';
-import 'package:fitcel/pages/start_page.dart';
+import 'package:fitcel/pages/auth/auth_page.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MainApp());
 }
 
@@ -23,6 +30,6 @@ class MainApp extends StatelessWidget {
             fontFamily: "Montserrat",
             visualDensity: VisualDensity.adaptivePlatformDensity),
         // Main Start Point Of App
-        home: const StartPage());
+        home: const AuthPage());
   }
 }

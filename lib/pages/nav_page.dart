@@ -38,17 +38,27 @@ class _NavPageState extends State<NavPage> {
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
         margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+          filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+
+          // Button Icons
           child: BottomNavigationBar(
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home_rounded), label: "Home"),
+                icon: Icon(Icons.home_rounded),
+                label: "Home",
+              ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.fitness_center_rounded), label: "Plans"),
+                icon: Icon(Icons.fitness_center_rounded),
+                label: "Plans",
+              ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.bar_chart_rounded), label: "Stats"),
+                icon: Icon(Icons.bar_chart_rounded),
+                label: "Stats",
+              ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.person_rounded), label: "User"),
+                icon: Icon(Icons.person_rounded),
+                label: "User",
+              ),
             ],
             type: BottomNavigationBarType.fixed,
             backgroundColor: prColor.withOpacity(0.2),

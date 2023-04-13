@@ -1,7 +1,7 @@
 import 'package:fitcel/constants.dart';
+import 'package:fitcel/widgets/google_btn.dart';
 import 'package:fitcel/widgets/my_button.dart';
 import 'package:fitcel/widgets/my_textfield.dart';
-import 'package:fitcel/widgets/square_btn.dart';
 import 'package:fitcel/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 
@@ -101,12 +101,9 @@ class SignUpPage extends StatelessWidget {
                 const SizedBox(height: 50),
 
                 // SignUp with google or apple
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    SquareBtn(imgPath: "assets/images/google-logo.png"),
-                    SquareBtn(imgPath: "assets/images/apple-logo.png"),
-                  ],
+                const GoogleBtn(
+                  imgPath: "assets/images/google-logo.png",
+                  txt: "Signup",
                 ),
                 const SizedBox(height: 50),
 

@@ -1,9 +1,9 @@
 import 'package:fitcel/constants.dart';
 import 'package:fitcel/pages/auth/forgot_pass_page.dart';
 import 'package:fitcel/pages/auth/sign_up_page.dart';
+import 'package:fitcel/widgets/google_btn.dart';
 import 'package:fitcel/widgets/my_button.dart';
 import 'package:fitcel/widgets/my_textfield.dart';
-import 'package:fitcel/widgets/square_btn.dart';
 import 'package:fitcel/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -123,12 +123,9 @@ class LogInPage extends StatelessWidget {
                 const SizedBox(height: 50),
 
                 // login with google or apple
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    SquareBtn(imgPath: "assets/images/google-logo.png"),
-                    SquareBtn(imgPath: "assets/images/apple-logo.png"),
-                  ],
+                const GoogleBtn(
+                  imgPath: "assets/images/google-logo.png",
+                  txt: "Login",
                 ),
                 const SizedBox(height: 50),
 
