@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fitcel/auth_service.dart';
 import 'package:fitcel/constants.dart';
 import 'package:fitcel/widgets/google_btn.dart';
 import 'package:fitcel/widgets/my_button.dart';
@@ -37,10 +36,7 @@ class _SignUpPageState extends State<SignUpPage> {
           email: emailController.text,
           password: passwordController.text,
         );
-        print(credential);
       } else {
-        print("error pass not match");
-
         if (context.mounted) Navigator.pop(context);
         showErrorMessage('Passwords don\'t match');
       }
@@ -163,10 +159,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(height: 50),
 
                 // SignUp with google or apple
-                GoogleBtn(
+                const GoogleBtn(
                   imgPath: "assets/images/google-logo.png",
                   txt: "Signup",
-                  onTap: () => AuthService().signInWithGoogle(),
                 ),
                 const SizedBox(height: 50),
 

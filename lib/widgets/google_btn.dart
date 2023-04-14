@@ -1,21 +1,37 @@
+import 'package:fitcel/auth_service.dart';
 import 'package:flutter/material.dart';
 
-class GoogleBtn extends StatelessWidget {
+class GoogleBtn extends StatefulWidget {
   final String imgPath;
   final String txt;
-  final void Function()? onTap;
 
   const GoogleBtn({
     Key? key,
     required this.imgPath,
     required this.txt,
-    this.onTap,
   }) : super(key: key);
+  @override
+  State<GoogleBtn> createState() => _GoogleBtnState();
+}
+
+class _GoogleBtnState extends State<GoogleBtn> {
+  // Auth Function
+  void googleAuth() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+    AuthService().signInWithGoogle();
+  }
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onTap,
+      onPressed: googleAuth,
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white12,
         foregroundColor: Colors.white,
@@ -28,11 +44,11 @@ class GoogleBtn extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            imgPath,
+            widget.imgPath,
           ),
           const SizedBox(width: 10),
           Text(
-            "$txt with Google",
+            "${widget.txt} with Google",
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,

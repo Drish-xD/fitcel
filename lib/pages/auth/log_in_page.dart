@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fitcel/auth_service.dart';
 import 'package:fitcel/constants.dart';
 import 'package:fitcel/pages/auth/forgot_pass_page.dart';
 import 'package:fitcel/pages/auth/sign_up_page.dart';
@@ -38,7 +37,6 @@ class _LogInPageState extends State<LogInPage> {
         email: emailController.text,
         password: passwordController.text,
       );
-      print("logged IN");
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       if (e.code == 'user-not-found') {
@@ -173,11 +171,10 @@ class _LogInPageState extends State<LogInPage> {
                 ),
                 const SizedBox(height: 50),
 
-                // login with google or apple
-                GoogleBtn(
+                // login with google
+                const GoogleBtn(
                   imgPath: "assets/images/google-logo.png",
                   txt: "Login",
-                  onTap: () => AuthService().signInWithGoogle(),
                 ),
                 const SizedBox(height: 50),
 
