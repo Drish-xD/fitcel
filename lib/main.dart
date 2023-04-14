@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  // initialize firebase app
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -19,6 +20,7 @@ void main() async {
 
 class MainApp extends StatefulWidget {
   const MainApp({Key? key}) : super(key: key);
+
   @override
   State<MainApp> createState() => _MainAppState();
 }
@@ -27,12 +29,13 @@ class _MainAppState extends State<MainApp> {
   late StreamSubscription<User?> _sub;
   final _navigatorKey = GlobalKey<NavigatorState>();
 
+  // checks the state of firebase auth
   @override
   void initState() {
     super.initState();
-    _sub = FirebaseAuth.instance.authStateChanges().listen((event) {
+    _sub = FirebaseAuth.instance.authStateChanges().listen((user) {
       _navigatorKey.currentState!.pushReplacementNamed(
-        event != null ? 'home' : 'login',
+        user != null ? 'home' : 'login',
       );
     });
   }
@@ -57,6 +60,8 @@ class _MainAppState extends State<MainApp> {
             textTheme: Theme.of(context).textTheme.apply(bodyColor: txtColor),
             fontFamily: "Montserrat",
             visualDensity: VisualDensity.adaptivePlatformDensity),
+
+        // Checks if user is logged in then push to NavPage else Startpage
         initialRoute:
             FirebaseAuth.instance.currentUser == null ? 'login' : 'home',
         onGenerateRoute: (settings) {

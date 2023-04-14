@@ -72,7 +72,11 @@ class _NavPageState extends State<NavPage> {
           ),
         ),
       ),
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: SafeArea(
+        child: _widgetOptions.elementAt(
+          _selectedIndex,
+        ),
+      ),
       extendBody: true,
     );
   }
