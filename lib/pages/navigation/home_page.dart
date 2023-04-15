@@ -1,7 +1,7 @@
 import 'package:fitcel/constants.dart';
 import 'package:fitcel/widgets/home/card_slider.dart';
 import 'package:fitcel/widgets/home/overview_box.dart';
-import 'package:fitcel/widgets/title_text.dart';
+import 'package:fitcel/widgets/common/title_text.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {

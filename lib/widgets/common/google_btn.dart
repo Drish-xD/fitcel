@@ -1,4 +1,4 @@
-import 'package:fitcel/auth_service.dart';
+import 'package:fitcel/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class GoogleBtn extends StatefulWidget {

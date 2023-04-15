@@ -7,7 +7,7 @@ import 'package:fitcel/pages/nav_page.dart';
 import 'package:fitcel/pages/start_page.dart';
 import 'package:flutter/material.dart';
 
-import 'firebase_options.dart';
+import 'services/firebase_options.dart';
 
 void main() async {
   // initialize firebase app

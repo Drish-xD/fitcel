@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitcel/constants.dart';
-import 'package:fitcel/widgets/my_button.dart';
-import 'package:fitcel/widgets/my_textfield.dart';
-import 'package:fitcel/widgets/title_text.dart';
+import 'package:fitcel/widgets/common/my_button.dart';
+import 'package:fitcel/widgets/common/my_textfield.dart';
+import 'package:fitcel/widgets/common/title_text.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPassPage extends StatefulWidget {
