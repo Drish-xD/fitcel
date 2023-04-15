@@ -7,8 +7,6 @@ import 'package:health/health.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class StatsPage extends StatefulWidget {
-  const StatsPage({Key? key}) : super(key: key);
-
   @override
   _StatsPageState createState() => _StatsPageState();
 }
@@ -54,10 +52,8 @@ class _StatsPageState extends State<StatsPage> {
   // Fetching the data from the fit api
   Future fetchData() async {
     setState(() => _state = AppState.fetchingData);
-
     final now = DateTime.now();
     final yesterday = now.subtract(const Duration(hours: 24));
-    print(_state);
     // Clear old data points
     _healthDataList.clear();
 
@@ -79,7 +75,6 @@ class _StatsPageState extends State<StatsPage> {
     setState(() {
       _state = _healthDataList.isEmpty ? AppState.noData : AppState.dataReady;
     });
-    print(_state);
   }
 
   Widget _contentFetchingData() {
