@@ -20,7 +20,7 @@ class _NavPageState extends State<NavPage> {
   static final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
     const PlansPage(),
-    const StatsPage(),
+    StatsPage(),
     const UserPage()
   ];
 
