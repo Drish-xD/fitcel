@@ -46,9 +46,9 @@ class _SignUpPageState extends State<SignUpPage> {
         showErrorMessage('Td is too weahe password providek.');
       } else if (e.code == 'email-already-in-use') {
         showErrorMessage('The account already exists for that email.');
+      } else {
+        showErrorMessage(e.message.toString());
       }
-    } catch (e) {
-      showErrorMessage(e.toString());
     }
   }
 

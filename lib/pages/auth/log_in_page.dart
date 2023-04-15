@@ -43,6 +43,8 @@ class _LogInPageState extends State<LogInPage> {
         showErrorMessage('No user found for that email.');
       } else if (e.code == 'wrong-password') {
         showErrorMessage('Wrong password provided for that user.');
+      } else {
+        showErrorMessage(e.message.toString());
       }
     }
   }
