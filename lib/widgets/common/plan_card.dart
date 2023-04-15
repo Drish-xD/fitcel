@@ -1,5 +1,7 @@
 import 'package:fitcel/constants.dart';
+import 'package:fitcel/pages/plan/plan_details.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 class PlanCard extends StatelessWidget {
   final Object data;
@@ -17,7 +19,16 @@ class PlanCard extends StatelessWidget {
       elevation: 5,
       child: InkWell(
         onTap: () {
-          debugPrint('Card tapped.');
+          Navigator.push(
+            context,
+            PageTransition(
+              opaque: true,
+              duration: const Duration(milliseconds: 500),
+              isIos: true,
+              type: PageTransitionType.rightToLeftWithFade,
+              child: const PlanDetails(celebId: 2),
+            ),
+          );
         },
         child: Container(
           decoration: const BoxDecoration(
