@@ -1,7 +1,7 @@
 import 'package:fitcel/services/celebs.dart';
 import 'package:fitcel/services/backend.dart';
-import 'package:fitcel/widgets/plan_card.dart';
-import 'package:fitcel/widgets/title_text.dart';
+import 'package:fitcel/widgets/common/plan_card.dart';
+import 'package:fitcel/widgets/common/title_text.dart';
 import 'package:flutter/material.dart';
 
 class PlansPage extends StatefulWidget {

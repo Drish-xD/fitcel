@@ -1,14 +1,62 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitcel/constants.dart';
-import 'package:fitcel/widgets/my_button.dart';
-import 'package:fitcel/widgets/my_textfield.dart';
-import 'package:fitcel/widgets/title_text.dart';
+import 'package:fitcel/widgets/common/my_button.dart';
+import 'package:fitcel/widgets/common/my_textfield.dart';
+import 'package:fitcel/widgets/common/title_text.dart';
 import 'package:flutter/material.dart';
 
-class ForgotPassPage extends StatelessWidget {
-  ForgotPassPage({Key? key}) : super(key: key);
+class ForgotPassPage extends StatefulWidget {
+  const ForgotPassPage({Key? key}) : super(key: key);
+
+  @override
+  State<ForgotPassPage> createState() => _ForgotPassPageState();
+}
+
+class _ForgotPassPageState extends State<ForgotPassPage> {
   final emailController = TextEditingController();
 
-  void forgotPassword() {}
+  // Forgot send mail functions
+  void forgotPassword() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: emailController.text);
+      if (context.mounted) Navigator.pop(context);
+      showMessage("Reset link send to your E-Mail.", true);
+    } catch (e) {
+      Navigator.pop(context);
+      showMessage("No User exist with this E-Mail", false);
+    }
+  }
+
+  void showMessage(String msg, bool success) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          alignment: Alignment.topCenter,
+          backgroundColor: success == true
+              ? Colors.greenAccent.withOpacity(0.6)
+              : Colors.redAccent.withOpacity(0.6),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          content: Text(
+            msg,
+            textAlign: TextAlign.center,
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

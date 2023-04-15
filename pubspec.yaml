@@ -16,8 +16,9 @@ dependencies:
   page_transition: ^2.0.9
   health:
     path: health_plugin
-  permission_handler: ^10.2.0
   http: ^0.13.5
+  permission_handler: ^10.2.0
+  sticky_headers: ^0.3.0+2
 
 dev_dependencies:
   flutter_test:

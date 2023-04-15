@@ -3,11 +3,11 @@ import 'package:fitcel/services/backend.dart';
 import 'package:fitcel/services/celebs.dart';
 import 'package:fitcel/widgets/home/card_slider.dart';
 import 'package:fitcel/widgets/home/overview_box.dart';
-import 'package:fitcel/widgets/title_text.dart';
+import 'package:fitcel/widgets/common/title_text.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();

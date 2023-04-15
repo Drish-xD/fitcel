@@ -1,6 +1,8 @@
 import 'package:fitcel/constants.dart';
 import 'package:fitcel/services/celebs.dart';
+import 'package:fitcel/pages/plan/plan_details.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 class PlanCard extends StatelessWidget {
   final Celebrity data;
@@ -18,12 +20,20 @@ class PlanCard extends StatelessWidget {
       elevation: 5,
       child: InkWell(
         onTap: () {
-          debugPrint('Card tapped.');
+          Navigator.push(
+            context,
+            PageTransition(
+              opaque: true,
+              duration: const Duration(milliseconds: 500),
+              isIos: true,
+              type: PageTransitionType.rightToLeftWithFade,
+              child: const PlanDetails(celebId: 2),
+            ),
+          );
         },
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              // image: AssetImage("assets/images/1.png"),
               image: NetworkImage(data.avatar),
               fit: BoxFit.contain,
               alignment: Alignment.bottomRight,
@@ -74,6 +84,7 @@ class PlanCard extends StatelessWidget {
                     color: Colors.black,
                     fontSize: fav ? 18 : 14,
                     fontWeight: FontWeight.w400)),
+
             // TODO: CHANGE THIS workoutType when available
             Text(data.dietype,
                 style: TextStyle(

@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fitcel/auth_service.dart';
 import 'package:fitcel/constants.dart';
-import 'package:fitcel/widgets/google_btn.dart';
-import 'package:fitcel/widgets/my_button.dart';
-import 'package:fitcel/widgets/my_textfield.dart';
-import 'package:fitcel/widgets/title_text.dart';
+import 'package:fitcel/widgets/common/google_btn.dart';
+import 'package:fitcel/widgets/common/my_button.dart';
+import 'package:fitcel/widgets/common/my_textfield.dart';
+import 'package:fitcel/widgets/common/title_text.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -32,27 +31,25 @@ class _SignUpPageState extends State<SignUpPage> {
     );
     try {
       if (passwordController.text == confirmPasswordController.text) {
-        final credential =
-            await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text,
-        );
-        print(credential);
+        await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+              email: emailController.text,
+              password: passwordController.text,
+            )
+            .then((res) => print(res.credential));
       } else {
-        print("error pass not match");
-
         if (context.mounted) Navigator.pop(context);
         showErrorMessage('Passwords don\'t match');
       }
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       if (e.code == 'weak-password') {
-        showErrorMessage('Td is too weahe password providek.');
+        showErrorMessage('Password is not strong enough.');
       } else if (e.code == 'email-already-in-use') {
         showErrorMessage('The account already exists for that email.');
+      } else {
+        showErrorMessage(e.message.toString());
       }
-    } catch (e) {
-      showErrorMessage(e.toString());
     }
   }
 
@@ -163,10 +160,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(height: 50),
 
                 // SignUp with google or apple
-                GoogleBtn(
+                const GoogleBtn(
                   imgPath: "assets/images/google-logo.png",
                   txt: "Signup",
-                  onTap: () => AuthService().signInWithGoogle(),
                 ),
                 const SizedBox(height: 50),
 

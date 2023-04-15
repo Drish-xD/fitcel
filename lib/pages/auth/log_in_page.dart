@@ -1,12 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fitcel/auth_service.dart';
 import 'package:fitcel/constants.dart';
 import 'package:fitcel/pages/auth/forgot_pass_page.dart';
 import 'package:fitcel/pages/auth/sign_up_page.dart';
-import 'package:fitcel/widgets/google_btn.dart';
-import 'package:fitcel/widgets/my_button.dart';
-import 'package:fitcel/widgets/my_textfield.dart';
-import 'package:fitcel/widgets/title_text.dart';
+import 'package:fitcel/widgets/common/google_btn.dart';
+import 'package:fitcel/widgets/common/my_button.dart';
+import 'package:fitcel/widgets/common/my_textfield.dart';
+import 'package:fitcel/widgets/common/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -38,13 +37,14 @@ class _LogInPageState extends State<LogInPage> {
         email: emailController.text,
         password: passwordController.text,
       );
-      print("logged IN");
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       if (e.code == 'user-not-found') {
         showErrorMessage('No user found for that email.');
       } else if (e.code == 'wrong-password') {
         showErrorMessage('Wrong password provided for that user.');
+      } else {
+        showErrorMessage(e.message.toString());
       }
     }
   }
@@ -123,7 +123,7 @@ class _LogInPageState extends State<LogInPage> {
                                   isIos: true,
                                   type: PageTransitionType.rightToLeftWithFade,
                                   // Route this page to forgetPassPage
-                                  child: ForgotPassPage(),
+                                  child: const ForgotPassPage(),
                                 ),
                               );
                             },
@@ -173,11 +173,10 @@ class _LogInPageState extends State<LogInPage> {
                 ),
                 const SizedBox(height: 50),
 
-                // login with google or apple
-                GoogleBtn(
+                // login with google
+                const GoogleBtn(
                   imgPath: "assets/images/google-logo.png",
                   txt: "Login",
-                  onTap: () => AuthService().signInWithGoogle(),
                 ),
                 const SizedBox(height: 50),
 
