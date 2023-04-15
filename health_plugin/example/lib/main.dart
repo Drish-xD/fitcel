@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:health/health.dart';
-import 'package:fitcel/pages/navigation/stats/util.dart';
+import 'package:health_example/util.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class StatsPage extends StatefulWidget {
-  const StatsPage({Key? key}) : super(key: key);
+void main() => runApp(HealthApp());
+
+class HealthApp extends StatefulWidget {
   @override
-  _StatsPageState createState() => _StatsPageState();
+  _HealthAppState createState() => _HealthAppState();
 }
 
 enum AppState {
@@ -25,7 +26,7 @@ enum AppState {
   STEPS_READY,
 }
 
-class _StatsPageState extends State<StatsPage> {
+class _HealthAppState extends State<HealthApp> {
   List<HealthDataPoint> _healthDataList = [];
   AppState _state = AppState.DATA_NOT_FETCHED;
   int _nofSteps = 0;
@@ -55,7 +56,7 @@ class _StatsPageState extends State<StatsPage> {
   final permissions = types.map((e) => HealthDataAccess.READ_WRITE).toList();
 
   // create a HealthFactory for use in the app
-  HealthFactory health = HealthFactory(useHealthConnectIfAvailable: false);
+  HealthFactory health = HealthFactory(useHealthConnectIfAvailable: true);
 
   Future authorize() async {
     // If we are trying to read Step Count, Workout, Sleep or other data that requires
@@ -70,7 +71,6 @@ class _StatsPageState extends State<StatsPage> {
     bool? hasPermissions =
         await health.hasPermissions(types, permissions: permissions);
 
-    print(await health.hasPermissions(types, permissions: permissions));
     // hasPermissions = false because the hasPermission cannot disclose if WRITE access exists.
     // Hence, we have to request with WRITE as well.
     hasPermissions = false;
@@ -81,7 +81,6 @@ class _StatsPageState extends State<StatsPage> {
       authorized =
           await health.requestAuthorization(types, permissions: permissions);
     }
-    print(authorized);
 
     setState(() => _state =
         (authorized) ? AppState.AUTHORIZED : AppState.AUTH_NOT_GRANTED);
@@ -349,62 +348,65 @@ class _StatsPageState extends State<StatsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Health Example'),
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            Wrap(
-              spacing: 10,
-              children: [
-                TextButton(
-                    onPressed: authorize,
-                    child: Text("Auth", style: TextStyle(color: Colors.white)),
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll(Colors.blue))),
-                TextButton(
-                    onPressed: fetchData,
-                    child: Text("Fetch Data",
-                        style: TextStyle(color: Colors.white)),
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll(Colors.blue))),
-                TextButton(
-                    onPressed: addData,
-                    child:
-                        Text("Add Data", style: TextStyle(color: Colors.white)),
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll(Colors.blue))),
-                TextButton(
-                    onPressed: deleteData,
-                    child: Text("Delete Data",
-                        style: TextStyle(color: Colors.white)),
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll(Colors.blue))),
-                TextButton(
-                    onPressed: fetchStepData,
-                    child: Text("Fetch Step Data",
-                        style: TextStyle(color: Colors.white)),
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll(Colors.blue))),
-                TextButton(
-                    onPressed: revokeAccess,
-                    child: Text("Revoke Access",
-                        style: TextStyle(color: Colors.white)),
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll(Colors.blue))),
-              ],
-            ),
-            Divider(thickness: 3),
-            Expanded(child: Center(child: _content()))
-          ],
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Health Example'),
+        ),
+        body: Container(
+          child: Column(
+            children: [
+              Wrap(
+                spacing: 10,
+                children: [
+                  TextButton(
+                      onPressed: authorize,
+                      child:
+                          Text("Auth", style: TextStyle(color: Colors.white)),
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.blue))),
+                  TextButton(
+                      onPressed: fetchData,
+                      child: Text("Fetch Data",
+                          style: TextStyle(color: Colors.white)),
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.blue))),
+                  TextButton(
+                      onPressed: addData,
+                      child: Text("Add Data",
+                          style: TextStyle(color: Colors.white)),
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.blue))),
+                  TextButton(
+                      onPressed: deleteData,
+                      child: Text("Delete Data",
+                          style: TextStyle(color: Colors.white)),
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.blue))),
+                  TextButton(
+                      onPressed: fetchStepData,
+                      child: Text("Fetch Step Data",
+                          style: TextStyle(color: Colors.white)),
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.blue))),
+                  TextButton(
+                      onPressed: revokeAccess,
+                      child: Text("Revoke Access",
+                          style: TextStyle(color: Colors.white)),
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.blue))),
+                ],
+              ),
+              Divider(thickness: 3),
+              Expanded(child: Center(child: _content()))
+            ],
+          ),
         ),
       ),
     );
