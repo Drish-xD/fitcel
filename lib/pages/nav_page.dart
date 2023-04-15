@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:fitcel/constants.dart';
 import 'package:fitcel/pages/navigation/home_page.dart';
 import 'package:fitcel/pages/navigation/plans_page.dart';
-import 'package:fitcel/pages/navigation/stats_page.dart';
+import 'package:fitcel/pages/navigation/stats/stats_page.dart';
 import 'package:fitcel/pages/navigation/user_page.dart';
 import 'package:flutter/material.dart';
 
