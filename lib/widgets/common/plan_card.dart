@@ -70,7 +70,7 @@ class PlanCard extends StatelessWidget {
                     color: Colors.black,
                     fontSize: fav ? 18 : 14,
                     fontWeight: FontWeight.w400)),
-            Text(data.dietype,
+            Text(data.dietType,
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: fav ? 20 : 14,
@@ -86,7 +86,7 @@ class PlanCard extends StatelessWidget {
                     fontWeight: FontWeight.w400)),
 
             // TODO: CHANGE THIS workoutType when available
-            Text(data.dietype,
+            Text(data.dietType,
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: fav ? 20 : 14,

@@ -27,7 +27,10 @@ class PlanDetails extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: const PlanCard(
                   data: Celebrity(
-                      id: 0, name: "Deepika", avatar: "", dietype: "Beginner")),
+                      id: 0,
+                      name: "Deepika",
+                      avatar: "",
+                      dietType: "Beginner")),
             ),
             const SizedBox(height: 10),
             Expanded(
