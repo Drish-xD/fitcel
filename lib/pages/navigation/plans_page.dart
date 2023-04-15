@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class PlansPage extends StatefulWidget {
   const PlansPage({Key? key}) : super(key: key);
+
   @override
   State<PlansPage> createState() => _PlansPageState();
 }
