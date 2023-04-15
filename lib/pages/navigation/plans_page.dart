@@ -5,7 +5,7 @@ import 'package:fitcel/widgets/common/title_text.dart';
 import 'package:flutter/material.dart';
 
 class PlansPage extends StatefulWidget {
-  PlansPage({Key? key}) : super(key: key);
+  const PlansPage({Key? key}) : super(key: key);
 
   @override
   State<PlansPage> createState() => _PlansPageState();

@@ -60,7 +60,7 @@ const List<HealthDataType> dataTypesAndroid = [
   HealthDataType.BODY_TEMPERATURE,
   HealthDataType.HEART_RATE,
   HealthDataType.STEPS,
-  // HealthDataType.MOVE_MINUTES, // TODO: Find alternative for Health Connect
+  // HealthDataType.MOVE_MINUTES,
   HealthDataType.DISTANCE_DELTA,
   // HealthDataType.SLEEP_AWAKE,
   // HealthDataType.SLEEP_ASLEEP,

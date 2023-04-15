@@ -12,6 +12,7 @@ class PlanDetails extends StatelessWidget {
     required this.celebId,
   }) : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -60,7 +61,7 @@ class PlanDetails extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           title: Text("Meal $index"),
-                          trailing: Text("10cal/100g"),
+                          trailing: const Text("10cal/100g"),
                         );
                       },
                     ),
