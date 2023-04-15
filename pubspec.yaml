@@ -18,6 +18,7 @@ dependencies:
     path: health_plugin
   http: ^0.13.5
   permission_handler: ^10.2.0
+  sticky_headers: ^0.3.0+2
 
 dev_dependencies:
   flutter_test:

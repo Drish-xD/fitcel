@@ -1,3 +1,5 @@
+import 'package:fitcel/services/base_service.dart';
+import 'package:fitcel/services/custom_objects.dart';
 import 'package:fitcel/widgets/common/plan_card.dart';
 import 'package:fitcel/widgets/common/title_text.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +12,7 @@ class PlansPage extends StatefulWidget {
 }
 
 class _PlansPageState extends State<PlansPage> {
-  // late Future plansList;
+  late Future<Plans> plansList;
   final List items = [
     {"name": "Deepika", 'fav': true, 'dType': "Intense", 'wType': "Intense"},
     {"name": "Priyanka", 'fav': true, 'dType': "Intense", 'wType': "Intense"},
@@ -23,11 +25,12 @@ class _PlansPageState extends State<PlansPage> {
     {"name": "Jonny", 'fav': true, 'dType': "Extreme", 'wType': "Extreme"}
   ];
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   plansList = BaseClient().getPlans();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    plansList = BaseClient().getPlans();
+    print(plansList);
+  }
 
   @override
   Widget build(BuildContext context) {

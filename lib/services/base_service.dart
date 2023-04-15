@@ -1,20 +1,21 @@
 import 'dart:convert';
 
+import 'package:fitcel/services/custom_objects.dart';
 import 'package:http/http.dart' as http;
 
-const String baseUrl = "someurl";
+const String baseUrl = "https://fitcel-backend.onrender.com";
 
 class BaseClient {
   var client = http.Client();
 
   // Fetch All Plans to populate cards
-  Future<dynamic> getPlans() async {
+  Future<Plans> getPlans() async {
     var url = Uri.parse("$baseUrl/getCelebs");
     var res = await client.get(url);
     if (res.statusCode == 200) {
-      return res.body;
+      return Plans.fromJson(jsonDecode(res.body));
     } else {
-      print(res.statusCode);
+      throw Exception('Failed to load plans');
     }
   }
 
