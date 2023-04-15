@@ -31,11 +31,12 @@ class _SignUpPageState extends State<SignUpPage> {
     );
     try {
       if (passwordController.text == confirmPasswordController.text) {
-        // final credential =
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text,
-        );
+        await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+              email: emailController.text,
+              password: passwordController.text,
+            )
+            .then((res) => print(res.credential));
       } else {
         if (context.mounted) Navigator.pop(context);
         showErrorMessage('Passwords don\'t match');
@@ -43,7 +44,7 @@ class _SignUpPageState extends State<SignUpPage> {
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       if (e.code == 'weak-password') {
-        showErrorMessage('Td is too weahe password providek.');
+        showErrorMessage('Password is not strong enough.');
       } else if (e.code == 'email-already-in-use') {
         showErrorMessage('The account already exists for that email.');
       } else {

@@ -25,7 +25,8 @@ class _GoogleBtnState extends State<GoogleBtn> {
         );
       },
     );
-    AuthService().signInWithGoogle();
+    var res = await AuthService().signInWithGoogle();
+    print(res);
   }
 
   @override

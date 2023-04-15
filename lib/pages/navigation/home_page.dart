@@ -1,12 +1,18 @@
 import 'package:fitcel/constants.dart';
+import 'package:fitcel/widgets/common/title_text.dart';
 import 'package:fitcel/widgets/home/card_slider.dart';
 import 'package:fitcel/widgets/home/overview_box.dart';
-import 'package:fitcel/widgets/common/title_text.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  // late Future plansList;
   final List items = [
     {"name": "Deepika", 'fav': true, 'dType': "Intense", 'wType': "Intense"},
     {"name": "Priyanka", 'fav': false, 'dType': "Intense", 'wType': "Intense"},
@@ -18,6 +24,12 @@ class HomePage extends StatelessWidget {
     },
     {"name": "Jonny", 'fav': true, 'dType': "Extreme", 'wType': "Extreme"}
   ];
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   plansList = BaseClient().getPlans();
+  // }
 
   @override
   Widget build(BuildContext context) {

@@ -2,9 +2,15 @@ import 'package:fitcel/widgets/common/plan_card.dart';
 import 'package:fitcel/widgets/common/title_text.dart';
 import 'package:flutter/material.dart';
 
-class PlansPage extends StatelessWidget {
+class PlansPage extends StatefulWidget {
   PlansPage({Key? key}) : super(key: key);
 
+  @override
+  State<PlansPage> createState() => _PlansPageState();
+}
+
+class _PlansPageState extends State<PlansPage> {
+  // late Future plansList;
   final List items = [
     {"name": "Deepika", 'fav': true, 'dType': "Intense", 'wType': "Intense"},
     {"name": "Priyanka", 'fav': true, 'dType': "Intense", 'wType': "Intense"},
@@ -16,6 +22,12 @@ class PlansPage extends StatelessWidget {
     },
     {"name": "Jonny", 'fav': true, 'dType': "Extreme", 'wType': "Extreme"}
   ];
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   plansList = BaseClient().getPlans();
+  // }
 
   @override
   Widget build(BuildContext context) {

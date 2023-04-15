@@ -16,6 +16,7 @@ dependencies:
   page_transition: ^2.0.9
   health:
     path: health_plugin
+  http: ^0.13.5
   permission_handler: ^10.2.0
 
 dev_dependencies:
