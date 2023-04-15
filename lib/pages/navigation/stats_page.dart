@@ -7,6 +7,8 @@ import 'package:health/health.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class StatsPage extends StatefulWidget {
+  const StatsPage({super.key});
+
   @override
   _StatsPageState createState() => _StatsPageState();
 }
