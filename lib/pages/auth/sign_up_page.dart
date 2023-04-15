@@ -31,8 +31,8 @@ class _SignUpPageState extends State<SignUpPage> {
     );
     try {
       if (passwordController.text == confirmPasswordController.text) {
-        final credential =
-            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        // final credential =
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text,
           password: passwordController.text,
         );

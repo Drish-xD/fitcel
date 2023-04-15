@@ -123,7 +123,7 @@ class _LogInPageState extends State<LogInPage> {
                                   isIos: true,
                                   type: PageTransitionType.rightToLeftWithFade,
                                   // Route this page to forgetPassPage
-                                  child: ForgotPassPage(),
+                                  child: const ForgotPassPage(),
                                 ),
                               );
                             },
