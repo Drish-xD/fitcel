@@ -1,23 +1,25 @@
 import 'package:fitcel/constants.dart';
+import 'package:fitcel/services/backend.dart';
+import 'package:fitcel/services/celebs.dart';
 import 'package:fitcel/widgets/home/card_slider.dart';
 import 'package:fitcel/widgets/home/overview_box.dart';
 import 'package:fitcel/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
-  final List items = [
-    {"name": "Deepika", 'fav': true, 'dType': "Intense", 'wType': "Intense"},
-    {"name": "Priyanka", 'fav': false, 'dType': "Intense", 'wType': "Intense"},
-    {
-      "name": "Hritik Roshan",
-      'fav': true,
-      'dType': "Intense",
-      'wType': "Intense"
-    },
-    {"name": "Jonny", 'fav': true, 'dType': "Extreme", 'wType': "Extreme"}
-  ];
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late Future<List<Celebrity>> celebs;
+  @override
+  void initState() {
+    super.initState();
+    celebs = Backend().getCelebs();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,17 +49,32 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 30),
 
           // Top Workouts plans slider
-          CardSlider(
-            secHeader: 'Top Workout Plans',
-            plansList: items,
-          ),
+          FutureBuilder(
+              future: celebs,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return CardSlider(
+                      secHeader: 'Top Workout Plans',
+                      plansList: snapshot.data!);
+                } else if (snapshot.hasError) {
+                  return Text("${snapshot.error}");
+                }
+                return const CircularProgressIndicator();
+              }),
           const SizedBox(height: 30),
 
           // Top Diet plans slider
-          CardSlider(
-            secHeader: "Top Diet Plans",
-            plansList: items,
-          ),
+          FutureBuilder(
+              future: celebs,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return CardSlider(
+                      secHeader: 'Top Diet Plans', plansList: snapshot.data!);
+                } else if (snapshot.hasError) {
+                  return Text("${snapshot.error}");
+                }
+                return const CircularProgressIndicator();
+              }),
           const SizedBox(height: 100),
         ],
       ),

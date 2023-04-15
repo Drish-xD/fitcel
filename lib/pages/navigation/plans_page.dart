@@ -1,21 +1,23 @@
+import 'package:fitcel/services/celebs.dart';
+import 'package:fitcel/services/backend.dart';
 import 'package:fitcel/widgets/plan_card.dart';
 import 'package:fitcel/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 
-class PlansPage extends StatelessWidget {
-  PlansPage({Key? key}) : super(key: key);
+class PlansPage extends StatefulWidget {
+  const PlansPage({Key? key}) : super(key: key);
+  @override
+  State<PlansPage> createState() => _PlansPageState();
+}
 
-  final List items = [
-    {"name": "Deepika", 'fav': true, 'dType': "Intense", 'wType': "Intense"},
-    {"name": "Priyanka", 'fav': true, 'dType': "Intense", 'wType': "Intense"},
-    {
-      "name": "Hritik Roshan",
-      'fav': true,
-      'dType': "Intense",
-      'wType': "Intense"
-    },
-    {"name": "Jonny", 'fav': true, 'dType': "Extreme", 'wType': "Extreme"}
-  ];
+class _PlansPageState extends State<PlansPage> {
+  late Future<List<Celebrity>> celebs;
+
+  @override
+  void initState() {
+    super.initState();
+    celebs = Backend().getCelebs();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,19 +28,31 @@ class PlansPage extends StatelessWidget {
           TitleText(text: "Explore Plans"),
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: GridView.builder(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount:
-                    MediaQuery.of(context).orientation == Orientation.landscape
-                        ? 3
-                        : 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-              ),
-              itemBuilder: (context, i) => PlanCard(data: items[i]),
-              itemCount: items.length,
+            child: FutureBuilder<List<Celebrity>>(
+              future: celebs,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return GridView.builder(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: MediaQuery.of(context).orientation ==
+                              Orientation.landscape
+                          ? 3
+                          : 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                    ),
+                    itemBuilder: (context, i) =>
+                        PlanCard(data: snapshot.data![i]),
+                    itemCount: snapshot.data!.length,
+                  );
+                } else if (snapshot.hasError) {
+                  return Text('${snapshot.error}');
+                }
+
+                return const CircularProgressIndicator();
+              },
             ),
           )
         ],

@@ -1,8 +1,9 @@
 import 'package:fitcel/constants.dart';
+import 'package:fitcel/services/celebs.dart';
 import 'package:flutter/material.dart';
 
 class PlanCard extends StatelessWidget {
-  final Object data;
+  final Celebrity data;
   final bool? fav;
   const PlanCard({Key? key, required this.data, this.fav = false})
       : super(key: key);
@@ -20,9 +21,10 @@ class PlanCard extends StatelessWidget {
           debugPrint('Card tapped.');
         },
         child: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/1.png"),
+              // image: AssetImage("assets/images/1.png"),
+              image: NetworkImage(data.avatar),
               fit: BoxFit.contain,
               alignment: Alignment.bottomRight,
             ),
@@ -37,13 +39,13 @@ class PlanCard extends StatelessWidget {
     );
   }
 
-  Column cardDetails(data, fav) {
+  Column cardDetails(Celebrity data, fav) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Name of the Celebrity
-        Text(data['name'],
+        Text(data.name,
             style: TextStyle(
                 color: Colors.black,
                 fontSize: fav ? 30 : 20,
@@ -58,7 +60,7 @@ class PlanCard extends StatelessWidget {
                     color: Colors.black,
                     fontSize: fav ? 18 : 14,
                     fontWeight: FontWeight.w400)),
-            Text(data['dType'],
+            Text(data.dietype,
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: fav ? 20 : 14,
@@ -72,7 +74,8 @@ class PlanCard extends StatelessWidget {
                     color: Colors.black,
                     fontSize: fav ? 18 : 14,
                     fontWeight: FontWeight.w400)),
-            Text(data['wType'],
+            // TODO: CHANGE THIS workoutType when available
+            Text(data.dietype,
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: fav ? 20 : 14,
