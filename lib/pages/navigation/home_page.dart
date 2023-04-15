@@ -1,6 +1,6 @@
 import 'package:fitcel/constants.dart';
-import 'package:fitcel/services/backend.dart';
-import 'package:fitcel/services/celebs.dart';
+import 'package:fitcel/services/backend/backend.dart';
+import 'package:fitcel/services/backend/celebs.dart';
 import 'package:fitcel/widgets/home/card_slider.dart';
 import 'package:fitcel/widgets/home/overview_box.dart';
 import 'package:fitcel/widgets/common/title_text.dart';

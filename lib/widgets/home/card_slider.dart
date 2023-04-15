@@ -1,5 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:fitcel/services/celebs.dart';
+import 'package:fitcel/services/backend/celebs.dart';
 import 'package:fitcel/widgets/home/section_header.dart';
 import 'package:fitcel/widgets/common/plan_card.dart';
 import 'package:flutter/material.dart';

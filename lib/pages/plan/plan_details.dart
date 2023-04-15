@@ -1,5 +1,5 @@
 import 'package:fitcel/constants.dart';
-import 'package:fitcel/services/celebs.dart';
+import 'package:fitcel/services/backend/celebs.dart';
 import 'package:fitcel/widgets/common/plan_card.dart';
 import 'package:fitcel/widgets/common/title_text.dart';
 import 'package:fitcel/widgets/home/section_header.dart';

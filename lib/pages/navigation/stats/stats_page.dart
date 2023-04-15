@@ -8,7 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 class StatsPage extends StatefulWidget {
   const StatsPage({Key? key}) : super(key: key);
   @override
-  _StatsPageState createState() => _StatsPageState();
+  State<StatsPage> createState() => _StatsPageState();
 }
 
 enum AppState {

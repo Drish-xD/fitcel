@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:fitcel/services/celebs.dart';
+import 'package:fitcel/services/backend/celebs.dart';
 import 'package:http/http.dart' as http;
 
 class Backend {

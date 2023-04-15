@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fitcel/services/celebs.dart';
+import 'package:fitcel/services/backend/celebs.dart';
 import 'package:fitcel/widgets/common/my_button.dart';
 import 'package:fitcel/widgets/common/plan_card.dart';
 import 'package:fitcel/widgets/common/title_text.dart';

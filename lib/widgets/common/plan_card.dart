@@ -1,5 +1,5 @@
 import 'package:fitcel/constants.dart';
-import 'package:fitcel/services/celebs.dart';
+import 'package:fitcel/services/backend/celebs.dart';
 import 'package:fitcel/pages/plan/plan_details.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
