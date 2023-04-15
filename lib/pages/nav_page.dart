@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:fitcel/constants.dart';
 import 'package:fitcel/pages/navigation/home_page.dart';
 import 'package:fitcel/pages/navigation/plans_page.dart';
-import 'package:fitcel/pages/navigation/stats/stats_page.dart';
+import 'package:fitcel/pages/navigation/stats_page.dart';
 import 'package:fitcel/pages/navigation/user_page.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +18,8 @@ class _NavPageState extends State<NavPage> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
-    PlansPage(),
+    const HomePage(),
+    const PlansPage(),
     const StatsPage(),
     const UserPage()
   ];
