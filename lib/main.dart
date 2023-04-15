@@ -49,14 +49,14 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'FitCel App',
+        title: 'Fitcel App',
         navigatorKey: _navigatorKey,
         debugShowCheckedModeBanner: false,
         // Set Theme For The App
         theme: ThemeData(
             useMaterial3: true,
             scaffoldBackgroundColor: bgColor,
-            // splashColor: Colors.deepPurple[900]?.withOpacity(0.1),
+            splashColor: Colors.deepPurple[900]?.withOpacity(0.1),
             textTheme: Theme.of(context).textTheme.apply(bodyColor: txtColor),
             fontFamily: "Montserrat",
             visualDensity: VisualDensity.adaptivePlatformDensity),
