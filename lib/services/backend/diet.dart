@@ -60,13 +60,13 @@ class Food {
   const Food({required this.name, required this.calories});
 
   factory Food.fromJson(Map<String, dynamic> json) {
-    return Food(name: json['name'], calories: json['Calories'].toDouble());
+    return Food(name: json['name'], calories: json['calories'].toDouble());
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
-    data['Calories'] = calories;
+    data['calories'] = calories;
     return data;
   }
 }
