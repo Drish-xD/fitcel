@@ -17,12 +17,26 @@ class UserPage extends StatefulWidget {
 class _UserPageState extends State<UserPage> {
   final User? user = FirebaseAuth.instance.currentUser;
   late Future<Celebrity> celeb;
-  late Future<int?> dietId;
+  // late Future<int?> dietId;
   @override
   void initState() {
     super.initState();
-    dietId = Backend().getUser(uuid: user!.uid).then((value) => value.dietId);
-    celeb = Backend().getCelebByDietID(dietID: dietId.toString());
+    // dietId = Backend().getUser(uuid: user!.uid).then((value) => value.dietId);
+    // celeb = Backend().getCelebByDietID(dietID: dietId.toString());
+    // celeb = () async {
+    //   int? dietId = await Backend()
+    //       .getUser(uuid: user!.uid)
+    //       .then((value) => value.dietID);
+    //   return await Backend().getCelebByDietID(dietID: dietId.toString());
+    //   // celeb = await Backend().getUser(uuid: user.uid, )
+    // };
+    celeb = getCeleb();
+  }
+
+  Future<Celebrity> getCeleb() async {
+    int? dietId =
+        await Backend().getUser(uuid: user!.uid).then((value) => value.dietId);
+    return Backend().getCelebByDietID(dietID: dietId.toString());
   }
 
   @override
@@ -81,24 +95,14 @@ class _UserPageState extends State<UserPage> {
             height: MediaQuery.of(context).size.width * 0.55,
             margin: const EdgeInsets.symmetric(horizontal: 20),
             child: FutureBuilder(
-                future: dietId,
+                future: celeb,
                 builder: (_, snapshot) {
-                  if (!snapshot.hasData) {
-                    return const Text("No Plan is active");
-                  } else if (snapshot.hasData) {
-                    return FutureBuilder(
-                        future: celeb,
-                        builder: (_, snapshot) {
-                          if (snapshot.hasData) {
-                            return PlanCard(celeb: snapshot.data!);
-                          } else if (snapshot.hasError) {
-                            return Text("${snapshot.error}");
-                          }
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        });
+                  if (snapshot.hasData) {
+                    return PlanCard(celeb: snapshot.data!);
                   } else if (snapshot.hasError) {
                     return Text("${snapshot.error}");
+                  } else if (!snapshot.hasData) {
+                    return const Text("No Plan is active");
                   }
                   return const Center(child: CircularProgressIndicator());
                 }),

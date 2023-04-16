@@ -52,7 +52,6 @@ class Backend {
     if (response.statusCode == 200) {
       return true;
     }
-    print(response.body);
     return false;
   }
 
@@ -68,11 +67,6 @@ class Backend {
       {required String uuid, required String dietID}) async {
     final response =
         await http.put(Uri.parse("$url/updateUser?UUID=$uuid&dietID=$dietID"));
-    print(response.body);
-    print(response.body);
-    print(response.body);
-    print(response.body);
-    print(response.body);
     if (response.statusCode == 200) {
       return true;
     }
