@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitcel/services/backend/backend.dart';
 import 'package:fitcel/services/backend/celebs.dart';
 import 'package:fitcel/widgets/common/my_button.dart';
 import 'package:fitcel/widgets/common/plan_card.dart';
@@ -15,6 +16,14 @@ class UserPage extends StatefulWidget {
 
 class _UserPageState extends State<UserPage> {
   final User? user = FirebaseAuth.instance.currentUser;
+  late Future<Celebrity> celeb;
+  late Future<int?> dietId;
+  @override
+  void initState() {
+    super.initState();
+    dietId = Backend().getUser(uuid: user!.uid).then((value) => value.dietId);
+    celeb = Backend().getCelebByDietID(dietID: dietId.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,11 +80,33 @@ class _UserPageState extends State<UserPage> {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.width * 0.55,
             margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: const PlanCard(
-              data: Celebrity(
-                  id: 0, name: "Deepika", avatar: "", dietType: "Beginner"),
-              fav: true,
-            ),
+            child: FutureBuilder(
+                future: dietId,
+                builder: (_, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Text("No Plan is active");
+                  } else if (snapshot.hasData) {
+                    return FutureBuilder(
+                        future: celeb,
+                        builder: (_, snapshot) {
+                          if (snapshot.hasData) {
+                            print(snapshot.data!.name);
+                            print(snapshot.data!.name);
+                            print(snapshot.data!.name);
+                            print(snapshot.data!.name);
+                            print(snapshot.data!.name);
+                            return PlanCard(celeb: snapshot.data!);
+                          } else if (snapshot.hasError) {
+                            return Text("${snapshot.error}");
+                          }
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        });
+                  } else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  }
+                  return const Center(child: CircularProgressIndicator());
+                }),
           ),
 
           const SizedBox(height: 80),

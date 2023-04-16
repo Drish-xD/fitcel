@@ -1,21 +1,21 @@
-class User {
+class UserInfo {
   final int id;
   final String uuid;
   final String email;
   final String createdAt;
   final String updatedAt;
-  final int dietId;
+  final int? dietId;
 
-  const User(
+  const UserInfo(
       {required this.id,
       required this.uuid,
       required this.email,
       required this.createdAt,
       required this.updatedAt,
-      required this.dietId});
+      this.dietId});
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
+  factory UserInfo.fromJson(Map<String, dynamic> json) {
+    return UserInfo(
       id: json['id'],
       uuid: json['uuid'],
       email: json['email'],

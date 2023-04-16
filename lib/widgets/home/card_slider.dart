@@ -25,7 +25,7 @@ class CardSlider extends StatelessWidget {
           height: MediaQuery.of(context).size.width * 0.7,
           child: Swiper(
             itemBuilder: (BuildContext context, int i) =>
-                PlanCard(data: plansList[i], fav: true),
+                PlanCard(celeb: plansList[i], fav: true),
             itemCount: plansList.length,
             viewportFraction: 0.8,
             scale: 0.8,

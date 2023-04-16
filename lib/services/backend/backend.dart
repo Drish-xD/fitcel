@@ -45,17 +45,21 @@ class Backend {
 
   Future<bool> addUser({required String email, required String uuid}) async {
     final response = await http.post(Uri.parse("$url/addUser"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
         body: json.encode(<String, String>{"email": email, "uuid": uuid}));
     if (response.statusCode == 200) {
       return true;
     }
+    print(response.body);
     return false;
   }
 
-  Future<User> getUser({required String uuid}) async {
+  Future<UserInfo> getUser({required String uuid}) async {
     final response = await http.get(Uri.parse("$url/getUserByUUID?uuid=$uuid"));
     if (response.statusCode == 200) {
-      return User.fromJson(json.decode(response.body));
+      return UserInfo.fromJson(json.decode(response.body));
     }
     throw Exception('Failed to fetch Celebrities');
   }
@@ -63,7 +67,12 @@ class Backend {
   Future<bool> updateUser(
       {required String uuid, required String dietID}) async {
     final response =
-        await http.put(Uri.parse("$url/updateUser?uuid=$uuid&dietID=$dietID"));
+        await http.put(Uri.parse("$url/updateUser?UUID=$uuid&dietID=$dietID"));
+    print(response.body);
+    print(response.body);
+    print(response.body);
+    print(response.body);
+    print(response.body);
     if (response.statusCode == 200) {
       return true;
     }

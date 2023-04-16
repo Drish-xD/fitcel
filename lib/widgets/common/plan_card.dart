@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 class PlanCard extends StatelessWidget {
-  final Celebrity data;
+  final Celebrity celeb;
   final bool? fav;
-  const PlanCard({Key? key, required this.data, this.fav = false})
+  const PlanCard({Key? key, required this.celeb, this.fav = false})
       : super(key: key);
 
   @override
@@ -27,14 +27,14 @@ class PlanCard extends StatelessWidget {
               duration: const Duration(milliseconds: 500),
               isIos: true,
               type: PageTransitionType.rightToLeftWithFade,
-              child: PlanDetails(celebId: data.id),
+              child: PlanDetails(celebId: celeb.id),
             ),
           );
         },
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage(data.avatar),
+              image: NetworkImage(celeb.avatar),
               fit: BoxFit.contain,
               alignment: Alignment.bottomRight,
             ),
@@ -42,7 +42,7 @@ class PlanCard extends StatelessWidget {
           child: Container(
             width: MediaQuery.of(context).size.width * 0.5,
             padding: const EdgeInsets.all(6.0),
-            child: cardDetails(data, fav),
+            child: cardDetails(celeb, fav),
           ),
         ),
       ),

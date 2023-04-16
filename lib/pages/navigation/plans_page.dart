@@ -45,7 +45,7 @@ class _PlansPageState extends State<PlansPage> {
                       crossAxisSpacing: 10,
                     ),
                     itemBuilder: (context, i) =>
-                        PlanCard(data: snapshot.data![i]),
+                        PlanCard(celeb: snapshot.data![i]),
                     itemCount: snapshot.data!.length,
                   );
                 } else if (snapshot.hasError) {

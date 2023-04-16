@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitcel/constants.dart';
 import 'package:fitcel/pages/auth/forgot_pass_page.dart';
 import 'package:fitcel/pages/auth/sign_up_page.dart';
+import 'package:fitcel/services/backend/backend.dart';
 import 'package:fitcel/widgets/common/google_btn.dart';
 import 'package:fitcel/widgets/common/my_button.dart';
 import 'package:fitcel/widgets/common/my_textfield.dart';
@@ -33,10 +34,15 @@ class _LogInPageState extends State<LogInPage> {
     );
 
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      var res = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
+      var success =
+          await Backend().addUser(email: res.user!.email!, uuid: res.user!.uid);
+      if (!success) {
+        showErrorMessage("unable to add user to backend");
+      }
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       if (e.code == 'user-not-found') {

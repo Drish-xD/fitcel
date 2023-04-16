@@ -1,4 +1,5 @@
 import 'package:fitcel/services/auth_service.dart';
+import 'package:fitcel/services/backend/backend.dart';
 import 'package:flutter/material.dart';
 
 class GoogleBtn extends StatefulWidget {
@@ -26,7 +27,11 @@ class _GoogleBtnState extends State<GoogleBtn> {
       },
     );
     var res = await AuthService().signInWithGoogle();
-    print(res);
+    var success =
+        await Backend().addUser(email: res.user!.email!, uuid: res.user!.uid);
+    if (!success) {
+      print("unable to add user to backend");
+    }
   }
 
   @override
