@@ -16,7 +16,8 @@ class OverviewBox extends StatelessWidget {
           Center(
               child: SectionHeader(
             text: "Transform your body like the stars.",
-            color: Colors.black,
+            color: Colors.white,
+            size: 20,
           )),
           const SizedBox(height: 10),
           Container(

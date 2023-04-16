@@ -22,22 +22,17 @@ enum AppState {
 
 class _StatsPageState extends State<StatsPage> {
   List<HealthDataPoint> _healthDataList = [];
-
+  int? _steps;
   AppState _state = AppState.dataNotFetched;
 
   HealthFactory health = HealthFactory(useHealthConnectIfAvailable: false);
 
   var types = [
-    HealthDataType.STEPS,
     HealthDataType.ACTIVE_ENERGY_BURNED,
     HealthDataType.DISTANCE_DELTA,
   ];
 
-  var permissions = [
-    HealthDataAccess.READ_WRITE,
-    HealthDataAccess.READ_WRITE,
-    HealthDataAccess.READ_WRITE
-  ];
+  var permissions = [HealthDataAccess.READ_WRITE, HealthDataAccess.READ_WRITE];
 
   // init auth
   @override
@@ -82,8 +77,7 @@ class _StatsPageState extends State<StatsPage> {
       // fetch health data
       List<HealthDataPoint> healthData =
           await health.getHealthDataFromTypes(yesterday, now, types);
-      int? steps = await health.getTotalStepsInInterval(midnight, now);
-      print(steps);
+      _steps = await health.getTotalStepsInInterval(midnight, now);
       // save all the new data points (only the first 100)
       _healthDataList.addAll(
           (healthData.length < 100) ? healthData : healthData.sublist(0, 100));
@@ -106,36 +100,6 @@ class _StatsPageState extends State<StatsPage> {
     );
   }
 
-  Widget _contentDataReady() {
-    return ListView.builder(
-        shrinkWrap: true,
-        itemCount: _healthDataList.length,
-        itemBuilder: (_, index) {
-          HealthDataPoint p = _healthDataList[index];
-          if (p.value is AudiogramHealthValue) {
-            return ListTile(
-              title: Text("${p.typeString}: ${p.value}"),
-              trailing: Text(p.unitString),
-              subtitle: Text('${p.dateFrom} - ${p.dateTo}'),
-            );
-          }
-          if (p.value is WorkoutHealthValue) {
-            return ListTile(
-              title: Text(
-                  "${p.typeString}: ${(p.value as WorkoutHealthValue).totalEnergyBurned} ${(p.value as WorkoutHealthValue).totalEnergyBurnedUnit?.name}"),
-              trailing: Text(
-                  (p.value as WorkoutHealthValue).workoutActivityType.name),
-              subtitle: Text('${p.dateFrom} - ${p.dateTo}'),
-            );
-          }
-          return ListTile(
-            title: Text("${p.typeString}: ${p.value}"),
-            trailing: Text(p.unitString),
-            subtitle: Text('${p.dateFrom} - ${p.dateTo}'),
-          );
-        });
-  }
-
   Widget _contentNoData() {
     return const Text('No Data to show');
   }
@@ -148,6 +112,104 @@ class _StatsPageState extends State<StatsPage> {
     return const Text('Authorization not given. '
         'For Android please check your OAUTH2 client ID is correct in Google Developer Console. '
         'For iOS check your permissions in Apple Health.');
+  }
+
+  Widget _contentDataReady() {
+    return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: 2,
+      itemBuilder: (_, index) {
+        HealthDataPoint p = _healthDataList[index];
+
+        if (p.unit == HealthDataUnit.METER) {
+          return Container(
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.width * 0.5,
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(14), color: Colors.white12),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.route_rounded,
+                  size: 100,
+                  color: Colors.lightGreenAccent,
+                ),
+                Text(
+                  "${(p.unit == HealthDataUnit.METER ? p.value.toString() : 0)} Meter",
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
+                )
+              ],
+            ),
+          );
+        }
+        if (p.unit == HealthDataUnit.KILOCALORIE) {
+          return Column(
+            children: [
+              Container(
+                alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.width * 0.5,
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(14),
+                    color: Colors.white12),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.directions_run_rounded,
+                      size: 100,
+                      color: Colors.cyanAccent,
+                    ),
+                    Text(
+                      "$_steps Meter",
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                height: MediaQuery.of(context).size.width * 0.5,
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(14),
+                    color: Colors.white12),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.local_fire_department,
+                      size: 100,
+                      color: Colors.orangeAccent,
+                    ),
+                    Text(
+                      "${p.value.toString()} Kcal",
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          );
+        }
+      },
+    );
   }
 
   Widget _content() {
@@ -166,47 +228,42 @@ class _StatsPageState extends State<StatsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TitleText(text: "User Stats"),
-        (_state != AppState.authNotGranted
-            ? Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text("Google Fit",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        )),
-                    ElevatedButton(
-                      onPressed: authorize,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                      ),
-                      child: const Text(
-                        "Connect",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TitleText(text: "User Stats"),
+          (_state == AppState.authNotGranted
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Google Fit",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          )),
+                      ElevatedButton(
+                        onPressed: authorize,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
                         ),
-                      ),
-                    )
-                  ],
-                ),
-              )
-            : const SizedBox()),
-        const SizedBox(height: 20),
-        SingleChildScrollView(
-          child: Container(
-            alignment: Alignment.center,
-            height: MediaQuery.of(context).size.height * 0.6,
-            child: _content(),
-          ),
-        )
-      ],
+                        child: const Text(
+                          "Connect",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              : const SizedBox()),
+          _content(),
+        ],
+      ),
     );
   }
 }
