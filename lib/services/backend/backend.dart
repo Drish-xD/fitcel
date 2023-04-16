@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:fitcel/services/backend/celebs.dart';
 import 'package:fitcel/services/backend/diet.dart';
+import 'package:fitcel/services/backend/user.dart';
 import 'package:http/http.dart' as http;
 
 class Backend {
@@ -25,6 +26,15 @@ class Backend {
     throw Exception('Failed to fetch Celebrities');
   }
 
+  Future<Celebrity> getCelebByDietID({required String dietID}) async {
+    final response =
+        await http.get(Uri.parse("$url/getCelebByDietID?dietID=$dietID"));
+    if (response.statusCode == 200) {
+      return Celebrity.fromJson(json.decode(response.body));
+    }
+    throw Exception('Failed to fetch Celebrities');
+  }
+
   Future<Diet> getCelebDiet({required String id}) async {
     final response = await http.get(Uri.parse("$url/getCelebDiet?id=$id"));
     if (response.statusCode == 200) {
@@ -40,6 +50,14 @@ class Backend {
       return true;
     }
     return false;
+  }
+
+  Future<User> getUser({required String uuid}) async {
+    final response = await http.get(Uri.parse("$url/getUserByUUID?uuid=$uuid"));
+    if (response.statusCode == 200) {
+      return User.fromJson(json.decode(response.body));
+    }
+    throw Exception('Failed to fetch Celebrities');
   }
 
   Future<bool> updateUser(
