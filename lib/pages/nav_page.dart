@@ -62,7 +62,6 @@ class _NavPageState extends State<NavPage> {
             ],
             type: BottomNavigationBarType.fixed,
             backgroundColor: prColor.withOpacity(0.2),
-            selectedItemColor: Colors.indigo[700],
             unselectedItemColor: Colors.white70,
             showSelectedLabels: false,
             showUnselectedLabels: false,

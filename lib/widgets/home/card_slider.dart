@@ -1,15 +1,18 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:fitcel/services/backend/celebs.dart';
-import 'package:fitcel/widgets/home/section_header.dart';
 import 'package:fitcel/widgets/common/plan_card.dart';
+import 'package:fitcel/widgets/home/section_header.dart';
 import 'package:flutter/material.dart';
 
 class CardSlider extends StatelessWidget {
   final String secHeader;
   final List<Celebrity> plansList;
 
-  const CardSlider({Key? key, required this.secHeader, required this.plansList})
-      : super(key: key);
+  const CardSlider({
+    Key? key,
+    required this.secHeader,
+    required this.plansList,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
-import 'package:fitcel/services/backend/celebs.dart';
 import 'package:fitcel/services/backend/backend.dart';
+import 'package:fitcel/services/backend/celebs.dart';
 import 'package:fitcel/widgets/common/plan_card.dart';
 import 'package:fitcel/widgets/common/title_text.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +52,12 @@ class _PlansPageState extends State<PlansPage> {
                   return Text('${snapshot.error}');
                 }
 
-                return const CircularProgressIndicator();
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
               },
             ),
           )

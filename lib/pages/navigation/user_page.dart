@@ -90,11 +90,6 @@ class _UserPageState extends State<UserPage> {
                         future: celeb,
                         builder: (_, snapshot) {
                           if (snapshot.hasData) {
-                            print(snapshot.data!.name);
-                            print(snapshot.data!.name);
-                            print(snapshot.data!.name);
-                            print(snapshot.data!.name);
-                            print(snapshot.data!.name);
                             return PlanCard(celeb: snapshot.data!);
                           } else if (snapshot.hasError) {
                             return Text("${snapshot.error}");

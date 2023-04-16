@@ -1,3 +1,5 @@
+import 'dart:core';
+
 class Diet {
   final int id;
   final String dietType;
