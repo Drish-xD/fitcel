@@ -27,7 +27,7 @@ class PlanCard extends StatelessWidget {
               duration: const Duration(milliseconds: 500),
               isIos: true,
               type: PageTransitionType.rightToLeftWithFade,
-              child: const PlanDetails(celebId: 2),
+              child: PlanDetails(celebId: data.id),
             ),
           );
         },

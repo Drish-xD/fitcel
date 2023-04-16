@@ -32,4 +32,23 @@ class Backend {
     }
     throw Exception("Failed to fetch diet");
   }
+
+  Future<bool> addUser({required String email, required String uuid}) async {
+    final response = await http.post(Uri.parse("$url/addUser"),
+        body: json.encode(<String, String>{"email": email, "uuid": uuid}));
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> updateUser(
+      {required String uuid, required String dietID}) async {
+    final response =
+        await http.put(Uri.parse("$url/updateUser?uuid=$uuid&dietID=$dietID"));
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
 }
