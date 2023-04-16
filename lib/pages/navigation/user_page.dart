@@ -72,8 +72,11 @@ class _UserPageState extends State<UserPage> {
             height: MediaQuery.of(context).size.width * 0.55,
             margin: const EdgeInsets.symmetric(horizontal: 20),
             child: const PlanCard(
-              data: Celebrity(
-                  id: 0, name: "Deepika", avatar: "", dietType: "Beginner"),
+              celeb: Celebrity(
+                  id: 0,
+                  name: "Deepika",
+                  avatar: "assets/images/1.png",
+                  dietType: "Beginner"),
               fav: true,
             ),
           ),

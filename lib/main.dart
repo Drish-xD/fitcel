@@ -49,31 +49,36 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Fitcel App',
-        navigatorKey: _navigatorKey,
-        debugShowCheckedModeBanner: false,
-        // Set Theme For The App
-        theme: ThemeData(
-            useMaterial3: true,
-            scaffoldBackgroundColor: bgColor,
-            splashColor: Colors.deepPurple[900]?.withOpacity(0.1),
-            textTheme: Theme.of(context).textTheme.apply(bodyColor: txtColor),
-            fontFamily: "Montserrat",
-            visualDensity: VisualDensity.adaptivePlatformDensity),
+      title: 'Fitcel App',
+      navigatorKey: _navigatorKey,
+      debugShowCheckedModeBanner: false,
+      // Set Theme For The App
+      theme: ThemeData(
+          useMaterial3: true,
+          scaffoldBackgroundColor: bgColor,
+          splashColor: prColor.withOpacity(0.5),
+          textTheme: Theme.of(context).textTheme.apply(bodyColor: txtColor),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.limeAccent,
+            primary: Colors.limeAccent,
+          ),
+          fontFamily: "Montserrat",
+          visualDensity: VisualDensity.adaptivePlatformDensity),
 
-        // Checks if user is logged in then push to NavPage else Startpage
-        initialRoute:
-            FirebaseAuth.instance.currentUser == null ? 'login' : 'home',
-        onGenerateRoute: (settings) {
-          switch (settings.name) {
-            case 'home':
-              return MaterialPageRoute(
-                  settings: settings, builder: (_) => const NavPage());
-            case 'login':
-              return MaterialPageRoute(
-                  settings: settings, builder: (_) => const StartPage());
-          }
-          return null;
-        });
+      // Checks if user is logged in then push to NavPage else Startpage
+      initialRoute:
+          FirebaseAuth.instance.currentUser == null ? 'login' : 'home',
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case 'home':
+            return MaterialPageRoute(
+                settings: settings, builder: (_) => const NavPage());
+          case 'login':
+            return MaterialPageRoute(
+                settings: settings, builder: (_) => const StartPage());
+        }
+        return null;
+      },
+    );
   }
 }

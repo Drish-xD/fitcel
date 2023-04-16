@@ -2,6 +2,7 @@ import 'package:fitcel/constants.dart';
 import 'package:fitcel/services/backend/backend.dart';
 import 'package:fitcel/services/backend/celebs.dart';
 import 'package:fitcel/services/backend/diet.dart';
+import 'package:fitcel/widgets/common/my_button.dart';
 import 'package:fitcel/widgets/common/plan_card.dart';
 import 'package:fitcel/widgets/common/title_text.dart';
 import 'package:fitcel/widgets/home/section_header.dart';
@@ -45,72 +46,81 @@ class _PlanDetailsState extends State<PlanDetails> {
                   future: celebDetails,
                   builder: (_, snapshot) {
                     if (snapshot.hasData) {
-                      return PlanCard(data: snapshot.data!);
+                      return PlanCard(celeb: snapshot.data!);
                     } else if (snapshot.hasError) {
                       return const PlanCard(
-                          data: Celebrity(
+                          celeb: Celebrity(
                               id: 0,
                               name: "",
                               avatar: "",
                               dietType: "Beginner"));
                     }
-                    return const CircularProgressIndicator();
+                    return const SizedBox();
                   }),
               // child: PlanCard(
             ),
             const SizedBox(height: 10),
             Expanded(
               child: FutureBuilder(
-                  future: celebDiet,
-                  builder: (_, snapshot) {
-                    if (snapshot.hasData) {
-                      return ListView.builder(
-                        padding: const EdgeInsets.all(20),
-                        itemCount: snapshot.data!.meals.length,
-                        itemBuilder: (context, mealIndex) {
-                          return StickyHeader(
-                            header: Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: prColor,
-                                  borderRadius: BorderRadius.circular(12),
+                future: celebDiet,
+                builder: (_, snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      padding: const EdgeInsets.all(20),
+                      itemCount: snapshot.data!.meals.length,
+                      itemBuilder: (context, mealIndex) {
+                        return StickyHeader(
+                          header: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: prColor,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              padding: const EdgeInsets.all(10),
+                              alignment: Alignment.centerLeft,
+                              child: SectionHeader(
+                                  text: snapshot.data!.meals[mealIndex].name)),
+                          content: ListView.builder(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount:
+                                snapshot.data!.meals[mealIndex].foods.length,
+                            itemBuilder: (context, foodIndex) {
+                              return ListTile(
+                                shape: BeveledRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
-                                padding: const EdgeInsets.all(10),
-                                alignment: Alignment.centerLeft,
-                                child: SectionHeader(
-                                    text:
-                                        snapshot.data!.meals[mealIndex].name)),
-                            content: ListView.builder(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount:
-                                  snapshot.data!.meals[mealIndex].foods.length,
-                              itemBuilder: (context, foodIndex) {
-                                return ListTile(
-                                  shape: BeveledRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  title: Text(snapshot.data!.meals[mealIndex]
-                                      .foods[foodIndex].name),
-                                  trailing: Text(
-                                      "${snapshot.data!.meals[mealIndex].foods[foodIndex].calories}/100g"),
-                                  // trailing: const Text("10cal/100g"),
-                                );
-                              },
-                            ),
-                          );
-                        },
-                      );
-                    } else if (snapshot.hasError) {
-                      return Text("${snapshot.error}");
-                    }
-                    return const LinearProgressIndicator();
-                  }),
+                                title: Text(snapshot.data!.meals[mealIndex]
+                                    .foods[foodIndex].name),
+                                trailing: Text(
+                                    "${snapshot.data!.meals[mealIndex].foods[foodIndex].calories}/100g"),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  }
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.8,
+                    child: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+
+        // TODO: Add activate plan function in it
+        child: MyButton(onTap: () {}, text: "Activate Plan"),
       ),
     );
   }
