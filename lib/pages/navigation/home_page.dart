@@ -71,20 +71,20 @@ class _HomePageState extends State<HomePage> {
 
           const SizedBox(height: 30),
 
-          // Top Workouts plans slider
-          FutureBuilder(
-              future: celebs,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return CardSlider(
-                    secHeader: 'Top Workout Plans',
-                    plansList: snapshot.data!,
-                  );
-                } else if (snapshot.hasError) {
-                  return Text("${snapshot.error}");
-                }
-                return const SizedBox();
-              }),
+          // // Top Workouts plans slider
+          // FutureBuilder(
+          //     future: celebs,
+          //     builder: (context, snapshot) {
+          //       if (snapshot.hasData) {
+          //         return CardSlider(
+          //           secHeader: 'Top Workout Plans',
+          //           plansList: snapshot.data!,
+          //         );
+          //       } else if (snapshot.hasError) {
+          //         return Text("${snapshot.error}");
+          //       }
+          //       return const SizedBox();
+          //     }),
           const SizedBox(height: 100),
         ],
       ),

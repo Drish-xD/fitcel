@@ -98,26 +98,26 @@ class PlanCard extends StatelessWidget {
             ),
             const SizedBox(height: 10),
 
-            // Workout type
-            Text(
-              'Workout:',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: fav ? 18 : 14,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+            // // Workout type
+            // Text(
+            //   'Workout:',
+            //   style: TextStyle(
+            //     color: Colors.black,
+            //     fontSize: fav ? 18 : 14,
+            //     fontWeight: FontWeight.w400,
+            //   ),
+            // ),
 
-            // TODO: CHANGE THIS workoutType when available
-            Text(
-              celeb.dietType,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: fav ? 20 : 14,
-                fontWeight: FontWeight.w300,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
+            // // TODO: CHANGE THIS workoutType when available
+            // Text(
+            //   celeb.dietType,
+            //   style: TextStyle(
+            //     color: Colors.black,
+            //     fontSize: fav ? 20 : 14,
+            //     fontWeight: FontWeight.w300,
+            //     fontStyle: FontStyle.italic,
+            //   ),
+            // ),
           ],
         ),
       ],

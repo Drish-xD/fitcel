@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitcel/constants.dart';
+import 'package:fitcel/services/backend/backend.dart';
 import 'package:fitcel/widgets/common/google_btn.dart';
 import 'package:fitcel/widgets/common/my_button.dart';
 import 'package:fitcel/widgets/common/my_textfield.dart';
@@ -31,12 +32,16 @@ class _SignUpPageState extends State<SignUpPage> {
     );
     try {
       if (passwordController.text == confirmPasswordController.text) {
-        await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-              email: emailController.text,
-              password: passwordController.text,
-            )
-            .then((res) => print(res.credential));
+        var res = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+
+        var success = await Backend()
+            .addUser(email: res.user!.email!, uuid: res.user!.uid);
+        if (!success) {
+          showErrorMessage("unable to add user to backend");
+        }
       } else {
         if (context.mounted) Navigator.pop(context);
         showErrorMessage('Passwords don\'t match');

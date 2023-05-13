@@ -32,7 +32,7 @@ class _GoogleBtnState extends State<GoogleBtn> {
     var success =
         await Backend().addUser(email: res.user!.email!, uuid: res.user!.uid);
     if (!success) {
-      print("unable to add user to backend");
+      throw Exception("unable to add user to backend");
     }
   }
 

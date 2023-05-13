@@ -208,6 +208,7 @@ class _StatsPageState extends State<StatsPage> {
             ],
           );
         }
+        return null;
       },
     );
   }

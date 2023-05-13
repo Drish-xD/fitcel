@@ -59,8 +59,8 @@ class _MainAppState extends State<MainApp> {
           splashColor: prColor.withOpacity(0.5),
           textTheme: Theme.of(context).textTheme.apply(bodyColor: txtColor),
           colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.limeAccent,
-            primary: Colors.limeAccent,
+            seedColor: Colors.blueAccent,
+            primary: Colors.blueAccent[900],
           ),
           fontFamily: "Montserrat",
           visualDensity: VisualDensity.adaptivePlatformDensity),
