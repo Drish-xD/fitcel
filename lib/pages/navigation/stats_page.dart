@@ -170,7 +170,7 @@ class _StatsPageState extends State<StatsPage> {
                       color: Colors.cyanAccent,
                     ),
                     Text(
-                      "$_steps Meter",
+                      "$_steps Steps",
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
